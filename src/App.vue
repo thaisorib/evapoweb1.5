@@ -6,8 +6,13 @@
 </template>
 
 <script>
+import Home from './pages/Home'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    'home': Home
+  }
 }
 </script>
 
