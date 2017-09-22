@@ -9,6 +9,10 @@ import Makkink from '@/pages/Makkink'
 import Linacre from '@/pages/Linacre'
 import Error from '@/pages/Error'
 
+import 'materialize-css/dist/css/materialize.min.css'
+import 'materialize-css/dist/js/materialize.min'
+import 'material-design-icons/iconfont/material-icons.css'
+
 Vue.use(Router)
 
 export default new Router({
