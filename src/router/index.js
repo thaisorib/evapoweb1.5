@@ -24,7 +24,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/penmon',
+      path: '/penman-monteith',
       name: 'PenMon',
       component: PenMon
     },
@@ -34,12 +34,12 @@ export default new Router({
       component: Linacre
     },
     {
-      path: '/harsam',
+      path: '/hargraves-samani',
       name: 'HarSam',
       component: HarSam
     },
     {
-      path: '/jenhai',
+      path: '/jensen-haise',
       name: 'JanHai',
       component: JenHai
     },
