@@ -16,9 +16,18 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-      © 2014 Copyright Text
+      © 2017 Todos os Direitos Reservados
       <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
       </div>
     </div>
   </footer>
 </template>
+
+<style lang="scss">
+.page-footer {
+    background-color: #114E74;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+  }
+</style>
