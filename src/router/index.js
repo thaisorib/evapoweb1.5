@@ -10,7 +10,7 @@ import Linacre from '@/pages/Linacre'
 import Error from '@/pages/Error'
 
 import 'materialize-css/dist/css/materialize.min.css'
-import 'materialize-css/dist/js/materialize.min'
+import 'materialize-css/dist/js/materialize.min.js'
 import 'material-design-icons/iconfont/material-icons.css'
 
 Vue.use(Router)
