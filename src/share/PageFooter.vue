@@ -25,9 +25,6 @@
 
 <style lang="scss">
 .page-footer {
-    background-color: #114E74;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-  }
+  background-color: #114E74;
+}
 </style>
