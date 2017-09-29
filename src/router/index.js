@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Vuelidate from 'vuelidate'
 import Router from 'vue-router'
 import Home from '@/pages/Home'
 import PenMon from '@/pages/PenMon'
@@ -14,6 +15,7 @@ import 'materialize-css/dist/js/materialize.min.js'
 import 'material-design-icons/iconfont/material-icons.css'
 
 Vue.use(Router)
+Vue.use(Vuelidate)
 
 export default new Router({
   mode: 'history',
