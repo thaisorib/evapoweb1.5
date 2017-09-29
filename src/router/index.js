@@ -1,6 +1,7 @@
 import Vue from 'vue'
-import Vuelidate from 'vuelidate'
 import Router from 'vue-router'
+import Vuelidate from 'vuelidate'
+
 import Home from '@/pages/Home'
 import PenMon from '@/pages/PenMon'
 import HarSam from '@/pages/HarSam'
