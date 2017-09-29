@@ -4,37 +4,38 @@
       <div class="col s12 m8 offset-m2">
         <div class="card white darken-1">
           <div class="card-content">
-            <span class="card-title">Método Tanque Classe A</span>
+            <span class="card-title">{{ methodTitle }}</span>
             <p class="method-description">
-              Esse método consiste em medir diariamente a evapotranspiração de um tanque metálico para estimar a ETo.
+              {{ methodDescription }}
             </p>
             <br>
             <div class="row">
-              <div class="input-field col m6 s12">
-                <input id="bordadura" type="text" class="validate" v-model="variables.bordadura">
+              <div class="input-field col m8 s12">
+                <input id="bordadura" type="text" class="validate" v-model="bordadura" @input="$v.bordadura.$touch()">
                 <label for="bordadura">Bordadura: (metros)</label>
                 <i class="mi mi-face"></i>
-                <p class="input-message" v-if="checkBordaduraValue()">O valor de bordadura deve ser entre 1m até 1000m</p>
+                <p class="error-message" v-if="!$v.bordadura.between">O valor de bordadura deve ser entre 1m até 1000m</p>
               </div>
             </div>
             <div class="row">
               <div class="input-field col m8 s12">
-                <input id="umidade-relativa" type="text" class="validate" v-model="variables.umiRelativa">
+                <input id="umidade-relativa" type="text" class="validate" v-model="umiRelativa" @input="$v.umiRelativa.$touch()">
                 <label for="umidade-relativa">Umidade Relativa média diária: (%)</label>
-                <p class="input-message" v-if="checkUmidadeValue()">Valor da umidade relativa deve ser entre 30% e 84%</p>
+                <p class="input-message" v-if="!$v.umiRelativa.between">Valor da umidade relativa deve ser entre 30% e 84%</p>
               </div>
             </div>
             <div class="row">
               <div class="input-field col m8 s12">
-                <input id="velocidade-vento" type="text" class="validate" v-model="variables.velocidadeVento">
+                <input id="velocidade-vento" type="text" class="validate" v-model="velocidadeVento" @input="$v.velocidadeVento.$touch()">
                 <label for="velocidade-vento">Velocidade do vento a 2 metros: (m/2)</label>
-                <p class="input-message" v-if="checkVelocidadeVentoValue()">Valor da velocidade do vento deve ser entre 1m/s e 8m/s</p>
+                <p class="input-message" v-if="!$v.velocidadeVento.between">Valor da velocidade do vento deve ser entre 1m/s e 8m/s</p>
               </div>
             </div>
             <div class="row">
               <div class="input-field col m8 s12">
-                <input id="eca" type="text" class="validate" v-model="variables.eca">
+                <input id="eca" type="text" class="validate" v-model="eca" @input="$v.eca.$touch()">
                 <label for="eca">ECA: (mm/dia)</label>
+                <p class="input-message" v-if="!$v.eca.required">Este campo é obrigatório</p>
               </div>
             </div>
             <div class="row" v-if="result">
@@ -53,8 +54,8 @@
 </template>
 
 <script>
-import { kp } from '@/functions/kpFunction.js'
-import { eto } from '@/functions/etoFunction.js'
+import { kp } from '@/functions/kp.js'
+import { eto } from '@/functions/eto.js'
 
 export default {
   name: 'tanque',
@@ -62,34 +63,37 @@ export default {
   data() {
     return {
       result: 0,
-      variables: {
-        bordadura: '',
-        umiRelativa: '',
-        velocidadeVento: '',
-        eca: ''
-      }
+      methodDescription: 'Esse método consiste em medir diariamente a evapotranspiração de um tanque metálico para estimar a ETo.',
+      methodTitle: 'Método Tanque Classe A',
+      bordadura: 0,
+      umiRelativa: 0,
+      velocidadeVento: 0,
+      eca: 0
+    }
+  },
+
+  validations: {
+    bordadura: {
+      required,
+      between: between(20, 30)
+    },
+    umiRelativa: {
+      required,
+      between: between(30, 84)
+    },
+    velocidadeVento: {
+      required,
+      between: between(1, 8)
+    },
+    eca: {
+      required
     }
   },
 
   methods: {
-    checkBordaduraValue() {
-      if(this.variables.bordadura <= 1 || this.variables.bordadura >= 1000) {
-        return true
-      }
-    },
-    checkUmidadeValue() {
-      if(this.variables.umiRelativa <= 30 || this.variables.umiRelativa >= 84) {
-        return true
-      }
-    },
-    checkVelocidadeVentoValue() {
-      if(this.variables.umiRelativa <= 1 || this.variables.umiRelativa >= 8) {
-        return true
-      }
-    },
     calculate() {
-      let kpResult = kp(this.variables.bordadura, this.variables.umiRelativa, this.variables.velocidadeVento)
-      let etoResult = eto(kpResult, this.variables.eca)
+      let kpResult = kp(this.bordadura, this.umiRelativa, this.velocidadeVento)
+      let etoResult = eto(kpResult, this.eca)
       this.result = etoResult.toFixed(2)
     }
   }
@@ -97,17 +101,4 @@ export default {
 </script>
 
 <style lang="scss">
-  .card {
-    color: #333;
-
-    .card-content {
-      margin-top: 30px;
-    }
-  }
-
-  .result {
-    padding: 10px 0 0 0;
-    text-align: center;
-    font-size: 2em;
-  }
 </style>
