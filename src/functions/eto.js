@@ -1,3 +1,5 @@
+'use strict';
+
 export function eto(kp, eca) {
   let eto
 
