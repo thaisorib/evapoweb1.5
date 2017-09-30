@@ -55,7 +55,7 @@ body {
   }
 
   .error-message {
-    color: #ff0000e6;
+    color: #ef5350;
     font-size: .8em;
   }
 
