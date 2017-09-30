@@ -58,7 +58,7 @@
 
 <script>
 import { kp } from '@/functions/kp.js'
-import { eto } from '@/functions/eto.js'
+import { etoTanque } from '@/functions/etoTanque.js'
 import { required, between } from 'vuelidate/lib/validators'
 
 export default {
@@ -97,7 +97,7 @@ export default {
   methods: {
     calculate() {
       let kpResult = kp(this.bordadura, this.umiRelativa, this.velocidadeVento)
-      let etoResult = eto(kpResult, this.eca)
+      let etoResult = etoTanque(kpResult, this.eca)
       this.result = etoResult.toFixed(2)
     }
   }
