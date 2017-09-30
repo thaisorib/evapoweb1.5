@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 export function kp(bordadura, umiRelativa, vento) {
   let kp
