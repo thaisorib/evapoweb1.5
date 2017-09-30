@@ -11,10 +11,6 @@ import Makkink from '@/pages/Makkink'
 import Linacre from '@/pages/Linacre'
 import Error from '@/pages/Error'
 
-import 'materialize-css/dist/css/materialize.min.css'
-import 'materialize-css/dist/js/materialize.min.js'
-import 'material-design-icons/iconfont/material-icons.css'
-
 Vue.use(Router)
 Vue.use(Vuelidate)
 
@@ -37,7 +33,7 @@ export default new Router({
       component: Linacre
     },
     {
-      path: '/hargraves-samani',
+      path: '/hargreaves-samani',
       name: 'HarSam',
       component: HarSam
     },
