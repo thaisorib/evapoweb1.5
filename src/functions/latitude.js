@@ -1,3 +1,5 @@
+'use strict';
+
 export function latitude(latGraus, latMin) {
   let latitude
 
