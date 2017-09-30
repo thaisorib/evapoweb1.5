@@ -54,6 +54,11 @@ body {
     }
   }
 
+  .error-message {
+    color: #ff0000e6;
+    font-size: .8em;
+  }
+
   .result {
     padding: 10px 0 0 0;
     text-align: center;
