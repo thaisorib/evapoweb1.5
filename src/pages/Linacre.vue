@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { latitude } from '@/functions/latitude.js'
+import { latitude } from '@/functions/latitudeLinacre.js'
 import { saturationPressure } from '@/functions/steamSaturationPressure.js'
 import { currentPressure } from '@/functions/steamCurrentPressure.js'
 import { dewPointTemperature } from '@/functions/dewPointTemperature.js'
