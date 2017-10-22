@@ -1,9 +1,9 @@
 'use strict'
 
-export function incidentSolarRadiation(radiano, insolation, durationDay) {
+export function incidentSolarRadiation(radiano, insolation, durationDay, radiationAtmosphere) {
   let incidentSolarRadiation
 
-  incidentSolarRadiation = ((a + 0.52 * (brilhoSolar / n)) * ra)
+  incidentSolarRadiation = ((radiano + 0.52 * (insolation / durationDay)) * radiationAtmosphere)
 
-  return incidentSolarRadiation
+  return incidentSolarRadiation
 }
