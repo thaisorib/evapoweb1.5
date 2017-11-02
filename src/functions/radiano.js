@@ -1,9 +1,5 @@
 'use strict'
 
-export function radiano() {
-  let radiano
-
-  radiano = (0.29 * Math.cos(latitude))
-
-  return radiano
+export function radiano(latitude) {
+  return (0.29 * Math.cos(latitude))
 }
