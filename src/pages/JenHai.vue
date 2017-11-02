@@ -1,5 +1,6 @@
 <template>
   <div id="jenhai">
+    <PageHeaderEto/>
     <div class="row">
       <div class="col s12 m8 offset-m2">
         <div class="card white darken-1">
@@ -95,6 +96,7 @@
 </template>
 
 <script>
+import PageHeaderEto from '@/share/PageHeaderEto'
 import { julianDay } from '@/functions/julianDay.js'
 import { averageTempMakkink } from '@/functions/averageTempMakkink.js'
 import { saturationPressure } from '@/functions/saturationPressure.js'
@@ -113,6 +115,10 @@ import { required, numeric, between } from 'vuelidate/lib/validators'
 
 export default {
   name: 'jenhai',
+
+  components: {
+    PageHeaderEto
+  },
 
   data() {
     return {
@@ -173,19 +179,20 @@ export default {
   methods: {
     calculate() {
       let julianDayResult = julianDay(this.day, this.month, this.year)
-      let averageTempMakkinkResult = averageTempMakkink(this.temp9AM, this.temp15PM, this.temp21PM)
-      let saturationPressureResult = saturationPressure(averageTempMakkinkResult)
-      let saturationPressureCurveResult = saturationPressureCurve(steamSaturationPressureMakkinkResult, averageTempMakkinkResult)
+      let averageTempResult = averageTempMakkink(this.temp9AM, this.temp15PM, this.temp21PM)
+      let saturationPressureResult = saturationPressure(averageTempResult)
+      let saturationPressureCurveResult = saturationPressureCurve(saturationPressureResult, averageTempResult)
       let psychrometricCoefficientResult = psychrometricCoefficient(this.atmosphericPressure)
       let latitudeResult = latitude(this.latitudeGraus, this.latitudeMinutos)
       let solarDeclinationResult = solarDeclination(julianDayResult)
       let relativeEarthSunResult = relativeEarthSun(julianDayResult)
+      let sunriseAngleResult = sunriseAngle(latitudeResult, solarDeclinationResult)
       let durationDayResult = durationDay(sunriseAngleResult)
       let radiationAtmosphereResult = radiationAtmosphere(relativeEarthSunResult, latitudeResult, solarDeclinationResult, sunriseAngleResult)
       let radianoResult = radiano(latitudeResult)
       let incidentSolarRadiationResult = incidentSolarRadiation(radianoResult, this.insolation, durationDayResult, radiationAtmosphereResult)
 
-      let etoResult = etoJensenHaise(incidentSolarRadiationResult, averageTempMakkinkResult)
+      let etoResult = etoJensenHaise(incidentSolarRadiationResult, averageTempResult)
       this.result = etoResult.toFixed(2)
     }
   }
