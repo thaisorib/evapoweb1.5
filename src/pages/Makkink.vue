@@ -1,5 +1,6 @@
 <template>
   <div id="tanque">
+    <PageHeaderEto/>
     <div class="row">
       <div class="col s12 m8 offset-m2">
         <div class="card white darken-1">
@@ -36,7 +37,6 @@
                 <span class="error-message" v-if="!$v.year.required">Entre com o valor do ano desejado</span>
                 <span class="error-message" v-if="!$v.day.numeric">O valor informado deve ser um número</span>
               </div>
-            </div>
             </div>
             <div class="row">
               <div class="input-field col m8 s12">
@@ -122,22 +122,31 @@
 </template>
 
 <script>
+import PageHeaderEto from '@/share/PageHeaderEto'
 import { averageTempMakkink } from '@/functions/averageTempMakkink.js'
 import { saturationPressure } from '@/functions/saturationPressure.js'
 import { julianDay } from '@/functions/julianDay.js'
 import { solarDeclination } from '@/functions/solarDeclination.js'
 import { wetBulbTemp } from '@/functions/wetBulbTemp.js'
 import { latitude } from '@/functions/latitudeHarSam.js'
+import { relativeEarthSun } from '@/functions/relativeEarthSun.js'
+import { sunriseAngle } from '@/functions/sunriseAngle.js'
 import { weightingFactor } from '@/functions/weightingFactor.js'
 import { saturationPressureCurve } from '@/functions/saturationPressureCurve.js'
 import { psychrometricCoefficient } from '@/functions/psychrometricCoefficient.js'
 import { radiationAtmosphere } from '@/functions/radiationAtmosphere.js'
+import { incidentSolarRadiation } from '@/functions/incidentSolarRadiation.js'
 import { durationDay } from '@/functions/durationDay.js'
 import { radiano } from '@/functions/radiano.js'
-import { required, between } from 'vuelidate/lib/validators'
+import { etoMakkink } from '@/functions/etoMakkink.js'
+import { required, between, numeric } from 'vuelidate/lib/validators'
 
 export default {
   name: 'makkink',
+
+  components: {
+    PageHeaderEto
+  },
 
   data() {
     return {
@@ -163,14 +172,17 @@ export default {
   validations: {
     day: {
       required,
+      numeric,
       between: between(1, 31)
     },
     month: {
       required,
+      numeric,
       between: between(1, 12)
     },
     year: {
-      required
+      required,
+      numeric
     },
     temp9AM: {
       required
@@ -210,11 +222,11 @@ export default {
   methods: {
     calculate() {
       let julianDayResult = julianDay(this.day, this.month, this.year)
-      let averageTempMakkinkResult = averageTempMakkink(this.temp9AM, this.temp15PM, this.temp21PM)
+      let averageTempResult = averageTempMakkink(this.temp9AM, this.temp15PM, this.temp21PM)
       let wetBulbTempResult = wetBulbTemp(this.wetBulb9AM, this.wetBulb15PM, this.wetBulb21PM)
       let weightingFactorResult = weightingFactor(wetBulbTempResult)
-      let saturationPressureResult = saturationPressure(averageTempMakkinkResult)
-      let saturationPressureCurveResult = saturationPressureCurve(steamSaturationPressureMakkinkResult, averageTempMakkinkResult)
+      let saturationPressureResult = saturationPressure(averageTempResult)
+      let saturationPressureCurveResult = saturationPressureCurve(saturationPressureResult, averageTempResult)
       let psychrometricCoefficientResult = psychrometricCoefficient(this.atmosphericPressure)
       let solarDeclinationResult = solarDeclination(julianDayResult)
       let relativeEarthSunResult = relativeEarthSun(julianDayResult)
@@ -223,10 +235,10 @@ export default {
       let radiationAtmosphereResult = radiationAtmosphere(relativeEarthSunResult, latitudeResult, solarDeclinationResult, sunriseAngleResult)
       let durationDayResult = durationDay(sunriseAngleResult)
       let radianoResult = radiano(latitudeResult)
-      let incidentSolarRadiationResult = incidentSolarRadiation(radiano, this.insolation, durationDayResult)
+      let incidentSolarRadiationResult = incidentSolarRadiation(radianoResult, this.insolation, durationDayResult, radiationAtmosphereResult)
 
       let etoResult = etoMakkink(weightingFactorResult, incidentSolarRadiationResult)
-      this.result = etoResult
+      this.result = etoResult.toFixed(2)
     }
   },
 
