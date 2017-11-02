@@ -1,5 +1,6 @@
 <template>
   <div id="tanque">
+    <PageHeaderEto/>
     <div class="row">
       <div class="col s12 m8 offset-m2">
         <div class="card white darken-1">
@@ -57,12 +58,17 @@
 </template>
 
 <script>
+import PageHeaderEto from '@/share/PageHeaderEto'
 import { kp } from '@/functions/kp.js'
 import { etoTanque } from '@/functions/etoTanque.js'
 import { required, between } from 'vuelidate/lib/validators'
 
 export default {
   name: 'tanque',
+
+  components: {
+    PageHeaderEto
+  },
 
   data() {
     return {

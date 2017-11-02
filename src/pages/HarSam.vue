@@ -1,5 +1,6 @@
 <template>
   <div id="harsam">
+    <PageHeaderEto/>
     <div class="row">
       <div class="col s12 m8 offset-m2">
         <div class="card white darken-1">
@@ -88,6 +89,7 @@
 </template>
 
 <script>
+import PageHeaderEto from '@/share/PageHeaderEto'
 import { julianDay } from '@/functions/julianDay.js'
 import { latitude } from '@/functions/latitudeHarSam.js'
 import { averageTemp } from '@/functions/averageTemp.js'
@@ -100,6 +102,10 @@ import { required, numeric, between } from 'vuelidate/lib/validators'
 
 export default {
   name: 'harsam',
+
+  components: {
+    PageHeaderEto
+  },
 
   data() {
     return {

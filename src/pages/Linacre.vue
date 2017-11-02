@@ -1,5 +1,6 @@
 <template>
   <div id="linacre">
+    <PageHeaderEto/>
     <div class="row">
       <div class="col s12 m8 offset-m2">
         <div class="card white darken-1">
@@ -59,6 +60,7 @@
 </template>
 
 <script>
+import PageHeaderEto from '@/share/PageHeaderEto'
 import { latitude } from '@/functions/latitudeLinacre.js'
 import { saturationPressure } from '@/functions/steamSaturationPressure.js'
 import { currentPressure } from '@/functions/steamCurrentPressure.js'
@@ -68,6 +70,10 @@ import { required } from 'vuelidate/lib/validators'
 
 export default {
   name: 'linacre',
+
+  components: {
+    PageHeaderEto
+  },
 
   data() {
     return {
