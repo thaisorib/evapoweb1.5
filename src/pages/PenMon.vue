@@ -49,7 +49,7 @@
             </div>
             <div class="row">
               <div class="input-field col m8 s12">
-                <input id="temp-max" type="text" class="validate" v-model="tempMax" @input="$v.tempMax.$touch()">
+                <input id="temp-max" type="text" class="validate" v-model.number="tempMax" @input="$v.tempMax.$touch()">
                 <label for="temp-max">Temperatura Máxima: (ºC)</label>
                 <i class="mi mi-face"></i>
                 <span class="error-message" v-if="!$v.tempMax.required">Entre com o valor da temperatura máxima</span>
@@ -57,7 +57,7 @@
             </div>
             <div class="row">
               <div class="input-field col m8 s12">
-                <input id="temp-min" type="text" class="validate" v-model="tempMin" @input="$v.tempMin.$touch()">
+                <input id="temp-min" type="text" class="validate" v-model.number="tempMin" @input="$v.tempMin.$touch()">
                 <label for="temp-min">Temperatura Mínima: (ºC)</label>
                 <i class="mi mi-face"></i>
                 <span class="error-message" v-if="!$v.tempMin.required">Entre com o valor da temperatura mínima</span>
@@ -72,28 +72,28 @@
             </div>
             <div class="row">
               <div class="input-field col m8 s12">
-                <input id="wind-speed" type="text" class="validate" v-model="windSpeed" @input="$v.windSpeed.$touch()">
+                <input id="wind-speed" type="text" class="validate" v-model.number="windSpeed" @input="$v.windSpeed.$touch()">
                 <label for="wind-speed">Velocidade do vento média a 10 metros: (m/s)</label>
                 <span class="error-message" v-if="!$v.windSpeed.required">Entre com a velocidade do vento média a 10 metros</span>
               </div>
             </div>
             <div class="row">
               <div class="input-field col m8 s12">
-                <input id="umidade-relativa-9AM" type="text" class="validate" v-model="umiRelativa9AM" @input="$v.umiRelativa9AM.$touch()">
+                <input id="umidade-relativa-9AM" type="text" class="validate" v-model.number="umiRelativa9AM" @input="$v.umiRelativa9AM.$touch()">
                 <label for="umidade-relativa-9AM">Umidade Relativa média diária: (9h)</label>
                 <span class="error-message" v-if="!$v.umiRelativa9AM.required">Entre com o valor da Umidade Relativa as 9h</span>
               </div>
             </div>
             <div class="row">
               <div class="input-field col m8 s12">
-                <input id="umidade-relative-15PM" type="text" class="validate" v-model="umiRelativa15PM" @input="$v.umiRelativa15PM.$touch()">
+                <input id="umidade-relative-15PM" type="text" class="validate" v-model.number="umiRelativa15PM" @input="$v.umiRelativa15PM.$touch()">
                 <label for="umidade-relative-15PM">Umidade Relativa média diária: (15h)</label>
                 <span class="error-message" v-if="!$v.umiRelativa15PM.required">Entre com o valor da Umidade Relativa as 15h</span>
               </div>
             </div>
             <div class="row">
               <div class="input-field col m8 s12">
-                <input id="umidade-relativa-21PM" type="text" class="validate" v-model="umiRelativa21PM" @input="$v.umiRelativa21PM.$touch()">
+                <input id="umidade-relativa-21PM" type="text" class="validate" v-model.number="umiRelativa21PM" @input="$v.umiRelativa21PM.$touch()">
                 <label for="umidade-relativa-21PM">Umidade Relativa média diária: (21h)</label>
                 <span class="error-message" v-if="!$v.umiRelativa21PM.required">Entre com o valor da Umidade Relativa as 21h</span>
               </div>
@@ -107,12 +107,12 @@
             </div>
             <div class="row">
               <div class="input-field col m4 s6">
-                <input id="latitude-graus" type="text" class="validate" v-model="latitudeGraus" @input="$v.latitudeGraus.$touch()">
+                <input id="latitude-graus" type="text" class="validate" v-model.number="latitudeGraus" @input="$v.latitudeGraus.$touch()">
                 <label for="latitude-graus">Latitude em graus:</label>
                 <span class="error-message" v-if="!$v.latitudeGraus.required">Entre com o valor da latitude em graus</span>
               </div>
               <div class="input-field col m4 s6">
-                <input id="latitude-minutos" type="text" class="validate" v-model="latitudeMinutos" @input="$v.latitudeMinutos.$touch()">
+                <input id="latitude-minutos" type="text" class="validate" v-model.number="latitudeMinutos" @input="$v.latitudeMinutos.$touch()">
                 <label for="latitude-minutos">Latitude em minutos:</label>
                 <span class="error-message" v-if="!$v.latitudeMinutos.required">Entre com o valor da latitude em minutos</span>
               </div>
@@ -153,6 +153,7 @@ import { incidentSolarRadiationPM } from '@/functions/incidentSolarRadiationPM.j
 import { shortwaveRadiation } from '@/functions/shortwaveRadiation.js'
 import { longwaveRadiation } from '@/functions/longwaveRadiation.js'
 import { radiationBalance } from '@/functions/radiationBalance.js'
+import { etoPenMon } from '@/functions/etoPenMon.js'
 import { required, numeric, between } from 'vuelidate/lib/validators'
 
 export default {
@@ -246,7 +247,7 @@ export default {
     calculate() {
       let julianDayResult = julianDay(this.day, this.month, this.year)
       let windSpeedResult = windSpeed(this.windSpeed)
-      let averageTempResult = averageTemp(this.temperatureAM, this.temperaturePM, this.tempMax, this.tempMin)
+      let averageTempResult = averageTemp(this.temp9AM, this.temp21PM, this.tempMax, this.tempMin)
       let saturationPressureResult = saturationPressure(averageTempResult)
       let saturationPressureCurveResult = saturationPressureCurve(saturationPressureResult, averageTempResult)
       let psychrometricCoefficientResult = psychrometricCoefficient(this.atmosphericPressure)
@@ -255,13 +256,13 @@ export default {
       let steamPressureResult = steamPressure(saturationPressureResult, relativeHumidityResult)
       let solarDeclinationResult = solarDeclination(julianDayResult)
       let latitudeResult = latitude(this.latitudeGraus, this.latitudeMinutos)
-      let sunriseAngle = sunriseAngle(latitudeResult, solarDeclinationResult)
+      let sunriseAngleResult = sunriseAngle(latitudeResult, solarDeclinationResult)
       let durationDayResult = durationDay(sunriseAngleResult)
       let relativeEarthSunResult = relativeEarthSun(julianDayResult)
       let radiationAtmosphereResult = radiationAtmosphere(relativeEarthSunResult, latitudeResult, solarDeclinationResult, sunriseAngleResult)
       let incidentSolarRadiationResult = incidentSolarRadiationPM(this.insolation, durationDayResult, radiationAtmosphereResult)
       let shortwaveRadiationResult = shortwaveRadiation(incidentSolarRadiationResult)
-      let longwaveRadiationResult = longwaveRadiation(this.insolation, steamPressureResult, this.tempMax, this.tempMin)
+      let longwaveRadiationResult = longwaveRadiation(this.insolation, durationDayResult, steamPressureResult, this.tempMax, this.tempMin)
       let radiationBalanceResult = radiationBalance(shortwaveRadiationResult, longwaveRadiationResult)
 
       let etoResult = etoPenMon(saturationPressureCurveResult, psychrometricCoefficientResult, radiationBalanceResult, modifiedPsychrometricCoefficientResult, averageTempResult, windSpeedResult, saturationPressureResult, steamPressureResult)
