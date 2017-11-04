@@ -12,27 +12,26 @@
             <br>
             <div class="row">
               <div class="input-field col m6 s12">
-                <input id="bordadura" type="text" class="validate" v-model="bordadura" @input="$v.bordadura.$touch()">
-                <label for="bordadura">Bordadura: (metros)</label>
-                <i class="mi mi-face"></i>
-                <span class="error-message" v-if="!$v.bordadura.between">O valor de bordadura deve ser entre 1m até 1000m</span>
-                <span class="error-message" v-if="!$v.bordadura.required">Este campo é obrigatório</span>
+                <input id="fetch" type="text" class="validate" v-model="fetch" @input="$v.fetch.$touch()">
+                <label for="fetch">Bordadura: (metros)</label>
+                <span class="error-message" v-if="!$v.fetch.between">O valor de bordadura deve ser entre 1m até 1000m</span>
+                <span class="error-message" v-if="!$v.fetch.required">Este campo é obrigatório</span>
               </div>
             </div>
             <div class="row">
               <div class="input-field col m6 s12">
-                <input id="umidade-relativa" type="text" class="validate" v-model="umiRelativa" @input="$v.umiRelativa.$touch()">
-                <label for="umidade-relativa">Umidade Relativa média diária: (%)</label>
-                <span class="error-message" v-if="!$v.umiRelativa.between">Valor da umidade relativa deve ser entre 30% e 84%</span>
-                <span class="error-message" v-if="!$v.umiRelativa.required">Este campo é obrigatório</span>
+                <input id="daily-humidity" type="text" class="validate" v-model="dailyHumidity" @input="$v.dailyHumidity.$touch()">
+                <label for="daily-humidity">Umidade Relativa média diária: (%)</label>
+                <span class="error-message" v-if="!$v.dailyHumidity.between">Valor da umidade relativa deve ser entre 30% e 84%</span>
+                <span class="error-message" v-if="!$v.dailyHumidity.required">Este campo é obrigatório</span>
               </div>
             </div>
             <div class="row">
               <div class="input-field col m6 s12">
-                <input id="velocidade-vento" type="text" class="validate" v-model="velocidadeVento" @input="$v.velocidadeVento.$touch()">
-                <label for="velocidade-vento">Velocidade do vento a 2 metros: (m/2)</label>
-                <span class="error-message" v-if="!$v.velocidadeVento.between">Valor da velocidade do vento deve ser entre 1m/s e 8m/s</span>
-                <span class="error-message" v-if="!$v.velocidadeVento.required">Este campo é obrigatório</span>
+                <input id="wind-speed" type="text" class="validate" v-model="windSpeed" @input="$v.windSpeed.$touch()">
+                <label for="wind-speed">Velocidade do vento a 2 metros: (m/2)</label>
+                <span class="error-message" v-if="!$v.windSpeed.between">Valor da velocidade do vento deve ser entre 1m/s e 8m/s</span>
+                <span class="error-message" v-if="!$v.windSpeed.required">Este campo é obrigatório</span>
               </div>
             </div>
             <div class="row">
@@ -75,23 +74,23 @@ export default {
       result: 0,
       methodDescription: 'Esse método consiste em medir diariamente a evapotranspiração de um tanque metálico para estimar a ETo.',
       methodTitle: 'Método Tanque Classe A',
-      bordadura: '',
-      umiRelativa: '',
-      velocidadeVento: '',
+      fetch: '',
+      dailyHumidity: '',
+      windSpeed: '',
       eca: ''
     }
   },
 
   validations: {
-    bordadura: {
+    fetch: {
       required,
       between: between(1, 1000)
     },
-    umiRelativa: {
+    dailyHumidity: {
       required,
       between: between(30, 84)
     },
-    velocidadeVento: {
+    windSpeed: {
       required,
       between: between(1, 8)
     },
@@ -102,7 +101,7 @@ export default {
 
   methods: {
     calculate() {
-      let kpResult = kp(this.bordadura, this.umiRelativa, this.velocidadeVento)
+      let kpResult = kp(this.fetch, this.dailyHumidity, this.windSpeed)
       let etoResult = etoTanque(kpResult, this.eca)
       this.result = etoResult.toFixed(2)
     }

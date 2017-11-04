@@ -1,10 +1,7 @@
 'use strict'
 
-export function kp(bordadura, umiRelativa, vento) {
-  let kp
+export function kp(fetch, dailyHumidity, windSpeed) {
 
-  kp = (0.108 - (0.0286 * vento) + (0.0422 * Math.log(bordadura) +
-    (0.1434 * Math.log(umiRelativa)) - (0.000631 * (Math.pow(Math.log(bordadura)), 2) * Math.log(umiRelativa))))
-
-  return kp
+  return (0.108 - (0.0286 * windSpeed) + (0.0422 * Math.log(fetch) +
+    (0.1434 * Math.log(dailyHumidity)) - (0.000631 * (Math.pow(Math.log(fetch)), 2) * Math.log(dailyHumidity))))
 }
