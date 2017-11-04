@@ -8,21 +8,16 @@
           <i class="material-icons">menu</i>
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><router-link to="/eto/penman-monteith">Penman-Monteith(FAO-56)</router-link></li>
-          <li><router-link to="/eto/linacre">Linacre</router-link><li>
-          <li><router-link to="/eto/hargreaves-samani">Hargreaves-Samani</router-link></li>
-          <li><router-link to="/eto/jensen-haise">Jensen-Haise</router-link></li>
-          <li><router-link to="/eto/makkink">Makkink</router-link></li>
-          <li><router-link to="/eto/tanque">Tanque Classe A</router-link></li>
+          <li v-for="link in etoLinks" :key="link.name">
+            <router-link :to="link.route">{{link.name}}</router-link>
+          </li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <li><router-link to="/eto/">Home</router-link></li>
-          <li><router-link to="/eto/penman-monteith">Penman-Monteith(FAO-56)</router-link></li>
-          <li><router-link to="/eto/linacre">Linacre</router-link><li>
-          <li><router-link to="/eto/hargreaves-samani">Hargreaves-Samani</router-link></li>
-          <li><router-link to="/eto/jensen-haise">Jensen-Haise</router-link></li>
-          <li><router-link to="/eto/makkink">Makkink</router-link></li>
-          <li><router-link to="/eto/tanque">Tanque Classe A</router-link></li>
+          <li class="divider"></li>
+          <li v-for="link in etoLinks" :key="link.name">
+            <router-link :to="link.route">{{link.name}}</router-link>
+          </li>
         </ul>
       </div>
     </nav>
@@ -31,6 +26,37 @@
 
 <script>
 export default {
+  data() {
+    return {
+      etoLinks: [
+        {
+          route: '/eto/penman-monteith',
+          name: 'Penman-Monteith(FAO-56)'
+        },
+        {
+          route: '/eto/linacre',
+          name: 'Linacre'
+        },
+        {
+          route: '/eto/hargreaves-samani',
+          name: 'Hargreaves-Samani'
+        },
+        {
+          route: '/eto/jensen-haise',
+          name: 'Jensen-Haise'
+        },
+        {
+          route: '/eto/makkink',
+          name: 'Makkink'
+        },
+        {
+          route: '/eto/tanque',
+          name: 'Tanque Classe A'
+        }
+      ]
+    }
+  },
+
   mounted() {
     $(this.$refs.buttonCollapse).sideNav()
   }
