@@ -1,6 +1,6 @@
 <template>
   <div id="tanque">
-    <PageHeaderEto/>
+    <PageHeaderEto />
     <div class="row">
       <div class="col s12 m8 offset-m2">
         <div class="card white darken-1">
@@ -17,11 +17,6 @@
                 <i class="mi mi-face"></i>
                 <span class="error-message" v-if="!$v.day.required">Entre com o valor dia desejado</span>
                 <span class="error-message" v-if="!$v.day.numeric">O valor informado deve ser um número</span>
-                <!-- <select v-model.number="day">
-                  <option value="" disabled selected>Dia:</option>
-                  <option value="1">Option 1</option>
-                </select>
-                <label>Selecione uma data:</label> -->
               </div>
               <div class="input-field col m4">
                 <input id="month" type="text" class="validate" v-model.number="month" @input="$v.month.$touch()">

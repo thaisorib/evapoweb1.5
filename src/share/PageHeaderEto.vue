@@ -13,7 +13,7 @@
           </li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li><router-link to="/eto/">Home</router-link></li>
+          <li><router-link to="/">Home</router-link></li>
           <li class="divider"></li>
           <li v-for="link in etoLinks" :key="link.name">
             <router-link :to="link.route">{{link.name}}</router-link>
