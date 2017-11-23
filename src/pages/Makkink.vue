@@ -1,6 +1,6 @@
 <template>
   <div id="tanque">
-    <PageHeaderEto/>
+    <PageHeaderEto />
     <div class="row">
       <div class="col s12 m8 offset-m2">
         <div class="card white darken-1">
@@ -11,31 +11,29 @@
             </p>
             <br>
             <div class="row">
-              <div class="input-field col m4">
-              <input id="day" type="text" class="validate" v-model.number="day" @input="$v.day.$touch()">
-                <label for="day">Dia:</label>
-                <i class="mi mi-face"></i>
-                <span class="error-message" v-if="!$v.day.required">Entre com o valor dia desejado</span>
-                <span class="error-message" v-if="!$v.day.numeric">O valor informado deve ser um número</span>
-                <!-- <select v-model.number="day">
-                  <option value="" disabled selected>Dia:</option>
-                  <option value="1">Option 1</option>
+              <div class="col m4">
+                <label>Dia:</label>
+                <select class="browser-default" v-model.number="day">
+                  <option disabled selected>Escolha um dia</option>
+                  <option :value="day" v-for="day in DAYS" :key="day">{{ day }}</option>
                 </select>
-                <label>Selecione uma data:</label> -->
+                <span class="error-message" v-if="$v.day.$invalid">Entre com o valor dia desejado</span>
               </div>
-              <div class="input-field col m4">
-                <input id="month" type="text" class="validate" v-model.number="month" @input="$v.month.$touch()">
-                <label for="month">Mês:</label>
-                <i class="mi mi-face"></i>
-                <span class="error-message" v-if="!$v.month.required">Entre com o valor mês desejado</span>
-                <span class="error-message" v-if="!$v.day.numeric">O valor informado deve ser um número</span>
+              <div class="col m4">
+                <label>Mês:</label>
+                <select class="browser-default" v-model.number="month">
+                  <option disabled selected>Escolha um mês</option>
+                  <option :value="month.index" v-for="month in MONTHS" :key="month.index">{{ month.month }}</option>
+                </select>
+                <span class="error-message" v-if="$v.month.$invalid">Entre com o valor do mês desejado</span>
               </div>
-              <div class="input-field col m4">
-                <input id="year" type="text" class="validate" v-model.number="year" @input="$v.year.$touch()">
-                <label for="year">Ano:</label>
-                <i class="mi mi-face"></i>
-                <span class="error-message" v-if="!$v.year.required">Entre com o valor do ano desejado</span>
-                <span class="error-message" v-if="!$v.day.numeric">O valor informado deve ser um número</span>
+              <div class="col m4">
+                <label>Ano:</label>
+                <select class="browser-default" v-model.number="year">
+                  <option disabled selected>Escolha um ano</option>
+                  <option :value="year" v-for="year in YEARS" :key="year">{{ year }}</option>
+                </select>
+                <span class="error-message" v-if="$v.year.$invalid">Entre com o valor do ano desejado</span>
               </div>
             </div>
             <div class="row">
@@ -123,6 +121,9 @@
 
 <script>
 import PageHeaderEto from '@/share/PageHeaderEto'
+import DAYS from '../assets/days'
+import MONTHS from '../assets/months'
+import YEARS from '../assets/years'
 import { averageTempMakkink } from '@/functions/averageTempMakkink.js'
 import { saturationPressure } from '@/functions/saturationPressure.js'
 import { julianDay } from '@/functions/julianDay.js'
@@ -150,6 +151,9 @@ export default {
 
   data() {
     return {
+      DAYS: DAYS,
+      MONTHS: MONTHS,
+      YEARS: YEARS,
       result: 0,
       methodTitle: 'Método Makkink',
       methodDescription: 'Este método baseia-se na correlação entre evapotranspiração potencial diária e radiação solar.',
@@ -165,24 +169,19 @@ export default {
       insolation: '',
       latitudeGraus: '',
       latitudeMinutos: '',
-      atmosphericPressure: '',
+      atmosphericPressure: ''
     }
   },
 
   validations: {
     day: {
-      required,
-      numeric,
-      between: between(1, 31)
+      required
     },
     month: {
-      required,
-      numeric,
-      between: between(1, 12)
+      required
     },
     year: {
-      required,
-      numeric
+      required
     },
     temp9AM: {
       required

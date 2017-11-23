@@ -7,6 +7,7 @@ import Error from '@/pages/Error'
 
 import Eto from '@/pages/Eto'
 import Lamina from '@/pages/Lamina'
+import CalculateLamina from '@/pages/CalculateLamina'
 
 import PenMon from '@/pages/PenMon'
 import HarSam from '@/pages/HarSam'
@@ -60,13 +61,17 @@ export default new Router({
           path: 'tanque',
           name: 'Tanque',
           component: Tanque
-        },
+        }
       ]
     },
     {
       path: '/lamina',
       name: 'Lamina',
-      component: Lamina
+      component: Lamina,
+    },
+    {
+      path: '/lamina/:method',
+      component: CalculateLamina,
     },
     {
       path: '*',
