@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Home from './pages/Home'
+import Home from './components/Home/Home'
 import PageFooter from '@/share/PageFooter'
 
 export default {
