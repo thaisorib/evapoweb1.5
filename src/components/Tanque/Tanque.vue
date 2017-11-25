@@ -7,7 +7,7 @@
 
 <script>
 import PageHeaderEto from '@/share/PageHeaderEto'
-import TanqueForm from '@/share/TanqueForm'
+import TanqueForm from './TanqueForm'
 
 export default {
   name: 'tanque',

@@ -7,7 +7,7 @@
 
 <script>
 import PageHeaderEto from '@/share/PageHeaderEto'
-import PenMonForm from '@/share/PenMonForm'
+import PenMonForm from './PenMonForm'
 
 
 export default {

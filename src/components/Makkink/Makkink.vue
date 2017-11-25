@@ -7,7 +7,7 @@
 
 <script>
 import PageHeaderEto from '@/share/PageHeaderEto'
-import MakkinkForm from '@/share/MakkinkForm'
+import MakkinkForm from './MakkinkForm'
 
 export default {
   name: 'makkink',

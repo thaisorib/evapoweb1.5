@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import PageHeader from '../share/PageHeader'
+import PageHeader from '@/share/PageHeader'
 import { required, numeric } from 'vuelidate/lib/validators'
 
 export default {

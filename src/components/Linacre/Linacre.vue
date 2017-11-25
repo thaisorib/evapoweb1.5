@@ -7,7 +7,7 @@
 
 <script>
 import PageHeaderEto from '@/share/PageHeaderEto'
-import LinacreForm from '@/share/LinacreForm'
+import LinacreForm from './LinacreForm'
 
 export default {
   name: 'linacre',
