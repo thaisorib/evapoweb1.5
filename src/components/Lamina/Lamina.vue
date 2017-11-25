@@ -46,6 +46,7 @@ export default {
   components: {
     PageHeader
   },
+
   data() {
     return {
       methods: [
@@ -79,6 +80,7 @@ export default {
       kc: ''
     }
   },
+
   validations: {
     dwi: {
       required,
@@ -89,6 +91,7 @@ export default {
       numeric,
     },
   },
+
   methods: {
     calculate() {
       this.$router.push({ path: `/lamina/${this.selectedMethod}` })
