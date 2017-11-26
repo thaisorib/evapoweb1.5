@@ -13,13 +13,15 @@
                 <option value="" disabled selected>Escolha um método</option>
                 <option :value="method.route" v-for="method in methods" :key="method.name">{{ method.name }}</option>
               </select>
+              <span class="error-message" v-if="$v.selectedMethod.$invalid">Escolha um método</span>
             </div>
             <div class="row">
-              <div class="input-field col m8 s12">
-                <input id="dwi" type="text" class="validate" v-model.number="dwi" @input="$v.dwi.$touch()">
-                <label for="dwi">Dias decorridos da última irrigação: (dias)</label>
-                <span class="error-message" v-if="!$v.dwi.required">Entre com o valor dos dias decorridos da última irrigação</span>
-              </div>
+              <label>Dias decorridos da última irrigação: (dias)</label>
+              <select class="browser-default" v-model.number="dwi">
+                <option value=""disabled selected>Escolha um dia</option>
+                <option :value="day" v-for="day in 15" :key="day">{{ day }}</option>
+              </select>
+              <span class="error-message" v-if="$v.dwi.$invalid">Entre com o valor dos dias decorridos da última irrigação</span>
             </div>
             <div class="row">
               <div class="input-field col m8 s12">
@@ -39,13 +41,14 @@
 </template>
 
 <script>
-import PageHeader from '../share/PageHeader'
+import PageHeader from '@/share/PageHeader'
 import { required, numeric } from 'vuelidate/lib/validators'
 
 export default {
   components: {
     PageHeader
   },
+
   data() {
     return {
       methods: [
@@ -79,19 +82,23 @@ export default {
       kc: ''
     }
   },
+
   validations: {
+    selectedMethod: {
+      required,
+    },
     dwi: {
       required,
-      numeric,
     },
     kc: {
       required,
       numeric,
     },
   },
+
   methods: {
     calculate() {
-      this.$router.push({ path: `/lamina/${this.selectedMethod}` })
+      this.$router.push({ path: `/lamina/${this.selectedMethod}`, query: { dwi: this.dwi, kc: this.kc }})
     }
   }
 }

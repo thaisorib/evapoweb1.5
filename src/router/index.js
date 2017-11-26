@@ -2,19 +2,19 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Vuelidate from 'vuelidate'
 
-import Home from '@/pages/Home'
-import Error from '@/pages/Error'
+import Home from '@/components/Home/Home'
+import Error from '@/components/Error/Error'
 
-import Eto from '@/pages/Eto'
-import Lamina from '@/pages/Lamina'
-import CalculateLamina from '@/pages/CalculateLamina'
+import Eto from '@/components/Eto/Eto'
+import Lamina from '@/components/Lamina/Lamina'
+import CalculateLamina from '@/components/Lamina/CalculateLamina'
 
-import PenMon from '@/pages/PenMon'
-import HarSam from '@/pages/HarSam'
-import JenHai from '@/pages/JenHai'
-import Tanque from '@/pages/Tanque'
-import Makkink from '@/pages/Makkink'
-import Linacre from '@/pages/Linacre'
+import PenMon from '@/components/PenmanMonteith/PenMon'
+import HarSam from '@/components/HargreavesSamani/HarSam'
+import JenHai from '@/components/JensenHaise/JenHai'
+import Tanque from '@/components/Tanque/Tanque'
+import Makkink from '@/components/Makkink/Makkink'
+import Linacre from '@/components/Linacre/Linacre'
 
 Vue.use(Router)
 Vue.use(Vuelidate)
@@ -72,6 +72,7 @@ export default new Router({
     {
       path: '/lamina/:method',
       component: CalculateLamina,
+      props: true
     },
     {
       path: '*',

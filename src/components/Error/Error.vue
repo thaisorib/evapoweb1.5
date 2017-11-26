@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import PageHeader from "../share/PageHeader";
+import PageHeader from "../../share/PageHeader";
 
 export default {
   name: "error",
