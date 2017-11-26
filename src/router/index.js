@@ -72,6 +72,7 @@ export default new Router({
     {
       path: '/lamina/:method',
       component: CalculateLamina,
+      props: true
     },
     {
       path: '*',
