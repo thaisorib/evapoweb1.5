@@ -261,6 +261,7 @@ export default {
 
       let etoResult = etoPenMon(saturationPressureCurveResult, psychrometricCoefficientResult, radiationBalanceResult, modifiedPsychrometricCoefficientResult, averageTempResult, windSpeedResult, saturationPressureResult, steamPressureResult)
       this.result = etoResult.toFixed(2)
+      this.$store.dispatch('setEto', this.result)
     }
   }
 }

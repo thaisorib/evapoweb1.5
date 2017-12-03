@@ -228,6 +228,7 @@ export default {
 
       let etoResult = etoMakkink(weightingFactorResult, incidentSolarRadiationResult)
       this.result = etoResult.toFixed(2)
+      this.$store.dispatch('setEto', this.result)
     }
   }
 }

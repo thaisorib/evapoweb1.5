@@ -9,7 +9,7 @@
           </p>
           <br>
           <div class="row">
-            <div class="input-field col m6 s12">
+            <div class="input-field col m12 s12">
               <input id="fetch" type="text" class="validate" v-model="fetch" @input="$v.fetch.$touch()">
               <label for="fetch">Bordadura: (metros)</label>
               <span class="error-message" v-if="!$v.fetch.between">O valor de bordadura deve ser entre 1m até 1000m</span>
@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col m6 s12">
+            <div class="input-field col m12 s12">
               <input id="daily-humidity" type="text" class="validate" v-model="dailyHumidity" @input="$v.dailyHumidity.$touch()">
               <label for="daily-humidity">Umidade Relativa média diária: (%)</label>
               <span class="error-message" v-if="!$v.dailyHumidity.between">Valor da umidade relativa deve ser entre 30% e 84%</span>
@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col m6 s12">
+            <div class="input-field col m12 s12">
               <input id="wind-speed" type="text" class="validate" v-model="windSpeed" @input="$v.windSpeed.$touch()">
               <label for="wind-speed">Velocidade do vento a 2 metros: (m/2)</label>
               <span class="error-message" v-if="!$v.windSpeed.between">Valor da velocidade do vento deve ser entre 1m/s e 8m/s</span>
@@ -33,7 +33,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col m6 s12">
+            <div class="input-field col m12 s12">
               <input id="eca" type="text" class="validate" v-model="eca" @input="$v.eca.$touch()">
               <label for="eca">ECA: (mm/dia)</label>
               <p class="error-message" v-if="!$v.eca.required">Este campo é obrigatório</p>
@@ -62,6 +62,7 @@ export default {
   data() {
     return {
       result: 0,
+      etoArray: [],
       methodDescription: 'Esse método consiste em medir diariamente a evapotranspiração de um tanque metálico para estimar a ETo.',
       methodTitle: 'Método Tanque Classe A',
       fetch: '',
@@ -94,6 +95,9 @@ export default {
       let kpResult = kp(this.fetch, this.dailyHumidity, this.windSpeed)
       let etoResult = etoTanque(kpResult, this.eca)
       this.result = etoResult.toFixed(2)
+
+      this.etoArray.push(this.result)
+      this.$store.dispatch('setEto', this.result)
     }
   }
 }
