@@ -8,8 +8,10 @@ Vue.use(Vuex)
 
 const state = {
   eto: [],
+  dailyPrecipitation: [],
+  kc: 0,
   dwi: 0,
-  kc: 0
+  systemIrrigationEfficiency: 0
 }
 
 export default new Vuex.Store({
