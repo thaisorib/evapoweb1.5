@@ -13,12 +13,16 @@ export const mutations = {
     state.kc = kc_value
   },
 
-  [types.SET_DAILY_PRECIPITATION] (state, daily_precipitation_value) {
-    state.dailyPrecipitation.push(daily_precipitation_value)
+  [types.SET_EFFECTIVE_RAINFALL] (state, effective_rainfall_value) {
+    state.effectiveRainfall.push(effective_rainfall_value)
   },
 
-  [types.SET_SYSTEM_IRRIGATION_EFFICIENCY](state, system_irrigation_efficiency_value) {
+  [types.SET_SYSTEM_IRRIGATION_EFFICIENCY] (state, system_irrigation_efficiency_value) {
     state.systemIrrigationEfficiency = system_irrigation_efficiency_value
+  },
+
+  [types.SET_DAILY_PRECIPITATION](state, daily_precipitation_value) {
+    state.dailyPrecipitation.push(daily_precipitation_value)
   },
 
   [types.RESET_ETO] (state) {

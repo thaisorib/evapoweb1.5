@@ -8,6 +8,7 @@ Vue.use(Vuex)
 
 const state = {
   eto: [],
+  effectiveRainfall: [],
   dailyPrecipitation: [],
   kc: 0,
   dwi: 0,
