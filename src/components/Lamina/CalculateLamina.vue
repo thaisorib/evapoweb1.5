@@ -13,10 +13,13 @@
       </div>
       <component :is="selectedMethod" :key="day"></component>
       <Precipitation />
-      <hr>
     </template>
-    <button class="waves-effect waves-light btn" @click="calculate()">Resultado</button>
-    <Results />
+    <div class="row">
+      <div class="col s12 m8 offset-m2">
+        <button class="waves-effect waves-light btn" @click="calculate()">Resultado</button>
+      </div>
+    </div>
+    <Results :laminaBruta="lbisResult"/>
   </div>
 </template>
 
@@ -50,36 +53,51 @@ export default {
       precipitationDay: '',
       selectedMethod: '',
       dwi: '',
-      kc: ''
+      kc: '',
+      etcResult: [],
+      lbisResult: '',
+      effectivePrecipitationResult: []
     }
   },
 
   methods: {
     calculate() {
-      console.log(effectivePrecipitation())
-      console.log(etc())
+      this.effectivePrecipitation()
+      this.etc()
+      this.lbis()
     },
 
     effectivePrecipitation() {
       const eto = this.$store.state.eto
       const dailyPrecipitation = this.$store.state.dailyPrecipitation
 
-      let effectivePrecipitationResult = eto.map((elem, index) => {
+      this.effectivePrecipitationResult = eto.map((elem, index) => {
         return (dailyPrecipitation[index] - (0.2) * elem)
       })
-
-      return effectivePrecipitationResult
     },
 
     etc() {
       const eto = this.$store.state.eto
       const kc = this.$store.state.kc
 
-      let etcResult = eto.map(elem => {
-        return (eto * kc)
+      this.etcResult = eto.map((elem, index) => {
+        return (eto[index] * kc)
       })
+    },
 
-      return etcResult
+    lbis() {
+      const systemEfficiency = this.$store.state.systemIrrigationEfficiency
+
+      this.lbisResult = this.etcResult.reduce((laminaBruta, val, index) => {
+        return laminaBruta + (val - this.effectivePrecipitationResult[index])
+      }, 0)
+
+      console.log(this.lbisResult)
+      console.log(this.lbisResult/systemEfficiency)
+
+      if((this.lbisResult / systemEfficiency) < 0) {
+        this.lbisResult = "Olá! Você não necessita irrigar, pois durante esses dias a chuva foi suficiente para atender a necessidade hídrica da sua cultura"
+      }
     }
   },
 
