@@ -165,6 +165,7 @@ export default {
       let etoResult = etoHarSam(this.tempMax, this.tempMin, averageTempResult, radiationAtmosphereResult)
 
       this.result = etoResult.toFixed(2)
+      this.$store.dispatch('setEto', this.result)
     }
   }
 };

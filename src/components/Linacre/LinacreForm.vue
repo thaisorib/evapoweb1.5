@@ -105,6 +105,7 @@ export default {
       const etoResult = etoLinacre(Number(this.tempMedia), latitudeResult, Number(this.altitude), dewPointTemperatureResult)
 
       this.result = etoResult.toFixed(2)
+      this.$store.dispatch('setEto', this.result)
     }
   }
 }

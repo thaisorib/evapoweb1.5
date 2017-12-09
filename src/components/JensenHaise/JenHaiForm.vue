@@ -188,6 +188,7 @@ export default {
 
       let etoResult = etoJensenHaise(incidentSolarRadiationResult, averageTempResult)
       this.result = etoResult.toFixed(2)
+      this.$store.dispatch('setEto', this.etoArray)
     }
   }
 }
