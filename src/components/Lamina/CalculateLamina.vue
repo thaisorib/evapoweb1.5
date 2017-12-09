@@ -4,49 +4,26 @@
     <template v-for="day in dwi">
       <div class="row">
         <div class="col s12 m8 offset-m2">
-          <div class="card blue darken-1">
-            <div class="card-content">
+          <div class="card grey lighten-4">
+            <div class="card-content precipitation-heder">
               <h6 class="card-title">Dados do dia: <strong>{{ day }}</strong></h6>
             </div>
           </div>
         </div>
       </div>
       <component :is="selectedMethod" :key="day"></component>
-      <div id="precipitation" class="row">
-        <div class="col s12 m8 offset-m2">
-          <div class="card white darken-1">
-            <div class="card-content precipitation-card">
-              <span class="card-title">Dados sobre Precipitação</span>
-              <div class="row">
-                <div class="col s6">
-                  <p>Houve precipitação neste dia?</p>
-                  <select class="browser-default" v-model="precipitation">
-                    <option disabled selected>Houve precipitação:</option>
-                    <option value="yes">Sim</option>
-                    <option value="no">Não</option>
-                  </select>
-                </div>
-                <div class="col s6" v-if="precipitation === 'yes'">
-                  <div class="input-field">
-                    <input id="precipitationDay" type="text" class="validate" v-model="precipitationDay">
-                    <label for="precipitationDay">Precipitação: (mm)</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Precipitation />
       <hr>
     </template>
-    <div class="row">
-      Resultados Finais
-    </div>
+    <button class="waves-effect waves-light btn" @click="calculate()">Resultado</button>
+    <Results />
   </div>
 </template>
 
 <script>
 import PageHeader from '@/share/PageHeader'
+import Precipitation from '@/components/Lamina/Precipitation'
+import Results from '@/components/Lamina/Results'
 import PenMon from '@/components/PenmanMonteith/PenMonForm'
 import HarSam from '@/components/HargreavesSamani/HarSamForm'
 import JenHai from '@/components/JensenHaise/JenHaiForm'
@@ -57,6 +34,8 @@ import Linacre from '@/components/Linacre/LinacreForm'
 export default {
   components: {
     PageHeader,
+    Precipitation,
+    Results,
     'penman-monteith': PenMon,
     'hargreaves-samani': HarSam,
     'jensen-haise': JenHai,
@@ -75,16 +54,45 @@ export default {
     }
   },
 
+  methods: {
+    calculate() {
+      console.log(effectivePrecipitation())
+      console.log(etc())
+    },
+
+    effectivePrecipitation() {
+      const eto = this.$store.state.eto
+      const dailyPrecipitation = this.$store.state.dailyPrecipitation
+
+      let effectivePrecipitationResult = eto.map((elem, index) => {
+        return (dailyPrecipitation[index] - (0.2) * elem)
+      })
+
+      return effectivePrecipitationResult
+    },
+
+    etc() {
+      const eto = this.$store.state.eto
+      const kc = this.$store.state.kc
+
+      let etcResult = eto.map(elem => {
+        return (eto * kc)
+      })
+
+      return etcResult
+    }
+  },
+
   created() {
     this.selectedMethod = this.$route.params.method
-    this.dwi = this.$route.query.dwi
-    this.kc = this.$route.query.kc
+    this.dwi = this.$store.state.dwi
+    this.kc = this.$store.state.kc
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.precipitation-card {
-  margin-top: -30px;
-}
+  .precipitation-heder {
+    margin-bottom: -40px;
+  }
 </style>
