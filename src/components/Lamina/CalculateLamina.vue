@@ -92,6 +92,9 @@ export default {
         return laminaBruta + (val - this.effectivePrecipitationResult[index])
       }, 0)
 
+      console.log(this.lbisResult)
+      console.log(this.lbisResult/systemEfficiency)
+
       if((this.lbisResult / systemEfficiency) < 0) {
         this.lbisResult = "Olá! Você não necessita irrigar, pois durante esses dias a chuva foi suficiente para atender a necessidade hídrica da sua cultura"
       }
