@@ -270,6 +270,7 @@ export default {
       let radiationAtmosphereResult = radiationAtmosphere(relativeEarthSunResult, latitudeResult, solarDeclinationResult, sunriseAngleResult)
       console.log('radiationAtmosphereResult:', radiationAtmosphereResult)
       let incidentSolarRadiationResult = incidentSolarRadiationPM(this.insolation, durationDayResult, radiationAtmosphereResult)
+      console.log('Oi cremosa! Eu sei que não o sou o melhor namorado do mundo... mas estou me esforçando muito para ser cada dia melhor! Saiba que vc é a minha fonte de inspiração!')
       console.log('incidentSolarRadiationResult:', incidentSolarRadiationResult)
       let shortwaveRadiationResult = shortwaveRadiation(incidentSolarRadiationResult)
       console.log('shortwaveRadiationResult:', shortwaveRadiationResult)
