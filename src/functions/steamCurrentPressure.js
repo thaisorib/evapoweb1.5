@@ -3,7 +3,7 @@
 export function currentPressure(saturationPressure, umiRelativa) {
   let currentPressure
 
-  currentPressure = (saturationPressure * 0.01 * umiRelativa)
+  currentPressure = ((saturationPressure * umiRelativa) * 0.01)
 
   return currentPressure
 }
