@@ -26,8 +26,8 @@
             <div class="row">
               <div class="input-field col m12 s12">
                 <input id="kc" type="text" class="validate" v-model.number="kc" @input="$v.kc.$touch()">
-                <label for="kc">KC média da cultura:</label>
-                <span class="error-message" v-if="!$v.kc.required">Entre com o valor do KC médio da sua cultura</span>
+                <label for="kc">kc referente ao estágio de desenvolvimento da cultura:</label>
+                <span class="error-message" v-if="!$v.kc.required">Entre com o valor do KC referente ao estágio de desenvolvimento da cultura</span>
               </div>
             </div>
             <div class="row">
