@@ -13,21 +13,21 @@
               <input id="temp-media" type="text" class="validate" v-model="tempMedia" @input="$v.tempMedia.$touch()">
               <label for="temp-media">Temperatura média: (ºC)</label>
               <i class="mi mi-face"></i>
-              <span class="error-message" v-if="!$v.tempMedia.required">Entre com o valor da temperatura média</span>
+              <span class="error-message" v-if="!$v.tempMedia.required">Entre com o valor da temperatura média. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="umidade-relativa" type="text" class="validate" v-model="umiRelativa" @input="$v.umiRelativa.$touch()">
               <label for="umidade-relativa">Umidade Relativa média diária: (%)</label>
-              <span class="error-message" v-if="!$v.umiRelativa.required">Entre com o valor da Umidade Relativa</span>
+              <span class="error-message" v-if="!$v.umiRelativa.required">Entre com o valor da Umidade Relativa. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="altitude" type="text" class="validate" v-model="altitude" @input="$v.altitude.$touch()">
               <label for="altitude">Altitude: (metros)</label>
-              <span class="error-message" v-if="!$v.altitude.required">Entre com o valor da altitude em metros</span>
+              <span class="error-message" v-if="!$v.altitude.required">Entre com o valor da altitude em metros. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">

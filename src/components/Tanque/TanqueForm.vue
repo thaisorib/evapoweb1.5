@@ -12,31 +12,28 @@
             <div class="input-field col m12 s12">
               <input id="fetch" type="text" class="validate" v-model.number="fetch" @input="$v.fetch.$touch()">
               <label for="fetch">Bordadura: (metros)</label>
-              <span class="error-message" v-if="!$v.fetch.between">O valor de bordadura deve ser entre 1m até 1000m</span>
-              <span class="error-message" v-if="!$v.fetch.required">Este campo é obrigatório</span>
+              <span class="error-message" v-if="!$v.fetch.required">Este campo é obrigatório. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m12 s12">
               <input id="daily-humidity" type="text" class="validate" v-model.number="dailyHumidity" @input="$v.dailyHumidity.$touch()">
               <label for="daily-humidity">Umidade Relativa média diária: (%)</label>
-              <span class="error-message" v-if="!$v.dailyHumidity.between">Valor da umidade relativa deve ser entre 30% e 84%</span>
-              <span class="error-message" v-if="!$v.dailyHumidity.required">Este campo é obrigatório</span>
+              <span class="error-message" v-if="!$v.dailyHumidity.required">Este campo é obrigatório. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m12 s12">
               <input id="wind-speed" type="text" class="validate" v-model.number="windSpeed" @input="$v.windSpeed.$touch()">
               <label for="wind-speed">Velocidade do vento a 2 metros: (m/2)</label>
-              <span class="error-message" v-if="!$v.windSpeed.between">Valor da velocidade do vento deve ser entre 1m/s e 8m/s</span>
-              <span class="error-message" v-if="!$v.windSpeed.required">Este campo é obrigatório</span>
+              <span class="error-message" v-if="!$v.windSpeed.required">Este campo é obrigatório. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m12 s12">
               <input id="eca" type="text" class="validate" v-model.number="eca" @input="$v.eca.$touch()">
               <label for="eca">ECA: (mm/dia)</label>
-              <p class="error-message" v-if="!$v.eca.required">Este campo é obrigatório</p>
+              <p class="error-message" v-if="!$v.eca.required">Este campo é obrigatório. O separador decimal deve ser ponto e não vírgula!</p>
             </div>
           </div>
           <div class="row" v-if="result">
@@ -74,16 +71,13 @@ export default {
 
   validations: {
     fetch: {
-      required,
-      between: between(1, 1000)
+      required
     },
     dailyHumidity: {
-      required,
-      between: between(30, 84)
+      required
     },
     windSpeed: {
-      required,
-      between: between(1, 8)
+      required
     },
     eca: {
       required

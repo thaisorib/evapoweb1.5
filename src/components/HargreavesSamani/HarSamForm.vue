@@ -38,40 +38,40 @@
             <div class="input-field col m8 s12">
               <input id="temperatureAM" type="text" class="validate" v-model.number="temperatureAM" @input="$v.temperatureAM.$touch()">
               <label for="temperatureAM">Temperatura: (9 horas)</label>
-              <span class="error-message" v-if="!$v.temperatureAM.required">Entre com o valor da temperatura às 9 horas</span>
+              <span class="error-message" v-if="!$v.temperatureAM.required">Entre com o valor da temperatura às 9 horas. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="temperaturePM" type="text" class="validate" v-model.number="temperaturePM" @input="$v.temperaturePM.$touch()">
               <label for="temperaturePM">Temperatura: (21 horas)</label>
-              <span class="error-message" v-if="!$v.temperaturePM.required">Entre com o valor da temperatura às 21 horas</span>
+              <span class="error-message" v-if="!$v.temperaturePM.required">Entre com o valor da temperatura às 21 horas. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="tempMax" type="text" class="validate" v-model.number="tempMax" @input="$v.tempMax.$touch()">
               <label for="tempMax">Temperatura Máxima: (˚C)</label>
-              <span class="error-message" v-if="!$v.tempMax.required">Entre com o valor da temperatura máxima</span>
+              <span class="error-message" v-if="!$v.tempMax.required">Entre com o valor da temperatura máxima. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="tempMin" type="text" class="validate" v-model.number="tempMin" @input="$v.tempMin.$touch()">
               <label for="tempMin">Temperatura mínima: (˚C)</label>
-              <span class="error-message" v-if="!$v.tempMin.required">Entre com o valor da temperatura mínima</span>
+              <span class="error-message" v-if="!$v.tempMin.required">Entre com o valor da temperatura mínima. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m4 s6">
               <input id="latitude-graus" type="text" class="validate" v-model.number="latitudeGraus" @input="$v.latitudeGraus.$touch()">
               <label for="latitude-graus">Latitude em graus:</label>
-              <span class="error-message" v-if="!$v.latitudeGraus.required">Entre com o valor da latitude em graus</span>
+              <span class="error-message" v-if="!$v.latitudeGraus.required">Entre com o valor da latitude em graus. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
             <div class="input-field col m4 s6">
               <input id="latitude-minutos" type="text" class="validate" v-model.number="latitudeMinutos" @input="$v.latitudeMinutos.$touch()">
               <label for="latitude-minutos">Latitude em minutos:</label>
-              <span class="error-message" v-if="!$v.latitudeMinutos.required">Entre com o valor da latitude em minutos</span>
+              <span class="error-message" v-if="!$v.latitudeMinutos.required">Entre com o valor da latitude em minutos. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row" v-if="result">
