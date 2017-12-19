@@ -36,32 +36,9 @@
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
-              <input id="temperature9AM" type="text" class="validate" v-model.number="temp9AM" @input="$v.temp9AM.$touch()">
-              <label for="temperature9AM">Temperatura: (9 horas)</label>
-              <span class="error-message" v-if="!$v.temp9AM.required">Entre com o valor da temperatura às 9 horas. O separador decimal deve ser ponto e não vírgula!</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col m8 s12">
-              <input id="temperature121PM" type="text" class="validate" v-model.number="temp21PM" @input="$v.temp21PM.$touch()">
-              <label for="temperature15PM">Temperatura: (21 horas)</label>
-              <span class="error-message" v-if="!$v.temp21PM.required">Entre com o valor da temperatura às 21 horas. O separador decimal deve ser ponto e não vírgula!</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col m8 s12">
-              <input id="temp-max" type="text" class="validate" v-model.number="tempMax" @input="$v.tempMax.$touch()">
-              <label for="temp-max">Temperatura Máxima: (ºC)</label>
-              <i class="mi mi-face"></i>
-              <span class="error-message" v-if="!$v.tempMax.required">Entre com o valor da temperatura máxima. O separador decimal deve ser ponto e não vírgula!</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col m8 s12">
-              <input id="temp-min" type="text" class="validate" v-model.number="tempMin" @input="$v.tempMin.$touch()">
-              <label for="temp-min">Temperatura Mínima: (ºC)</label>
-              <i class="mi mi-face"></i>
-              <span class="error-message" v-if="!$v.tempMin.required">Entre com o valor da temperatura mínima. O separador decimal deve ser ponto e não vírgula!</span>
+              <input id="average-temperature" type="text" class="validate" v-model.number="averageTemperature" @input="$v.averageTemperature.$touch()">
+              <label for="average-temperature">Temperatura Média: (°C)</label>
+              <span class="error-message" v-if="!$v.averageTemperature.required">Entre com o valor da temperatura média em °C. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
@@ -80,23 +57,9 @@
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
-              <input id="umidade-relativa-9AM" type="text" class="validate" v-model.number="umiRelativa9AM" @input="$v.umiRelativa9AM.$touch()">
-              <label for="umidade-relativa-9AM">Umidade Relativa média diária: (9h)</label>
-              <span class="error-message" v-if="!$v.umiRelativa9AM.required">Entre com o valor da Umidade Relativa as 9h. O separador decimal deve ser ponto e não vírgula!</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col m8 s12">
-              <input id="umidade-relative-15PM" type="text" class="validate" v-model.number="umiRelativa15PM" @input="$v.umiRelativa15PM.$touch()">
-              <label for="umidade-relative-15PM">Umidade Relativa média diária: (15h)</label>
-              <span class="error-message" v-if="!$v.umiRelativa15PM.required">Entre com o valor da Umidade Relativa as 15h. O separador decimal deve ser ponto e não vírgula!</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col m8 s12">
-              <input id="umidade-relativa-21PM" type="text" class="validate" v-model.number="umiRelativa21PM" @input="$v.umiRelativa21PM.$touch()">
-              <label for="umidade-relativa-21PM">Umidade Relativa média diária: (21h)</label>
-              <span class="error-message" v-if="!$v.umiRelativa21PM.required">Entre com o valor da Umidade Relativa as 21h. O separador decimal deve ser ponto e não vírgula!</span>
+              <input id="umidade-relativa-media" type="text" class="validate" v-model.number="umiRelativaMedia" @input="$v.umiRelativaMedia.$touch()">
+              <label for="umidade-relativa-media">Umidade Relativa Média:</label>
+              <span class="error-message" v-if="!$v.umiRelativaMedia.required">Entre com o valor da Umidade Relativa média. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
@@ -144,7 +107,6 @@ import { saturationPressure } from '@/functions/saturationPressure.js'
 import { saturationPressureCurve } from '@/functions/saturationPressureCurve.js'
 import { psychrometricCoefficient } from '@/functions/psychrometricCoefficient.js'
 import { modifiedPsychrometricCoefficient } from '@/functions/modifiedPsychrometricCoefficient.js'
-import { relativeHumidity } from '@/functions/relativeHumidity.js'
 import { steamPressure } from '@/functions/steamPressure.js'
 import { solarDeclination } from '@/functions/solarDeclination.js'
 import { sunriseAngle } from '@/functions/sunriseAngle.js'
@@ -171,15 +133,10 @@ export default {
       day: '',
       month: '',
       year: '',
-      temp9AM: '',
-      temp21PM: '',
-      tempMax: '',
-      tempMin: '',
+      averageTemperature: '',
       windSpeed: '',
       atmosphericPressure: '',
-      umiRelativa9AM: '',
-      umiRelativa15PM: '',
-      umiRelativa21PM: '',
+      umiRelativaMedia: '',
       insolation: '',
       latitudeGraus: '',
       latitudeMinutos: ''
@@ -196,31 +153,13 @@ export default {
     year: {
       required
     },
-    temp9AM: {
-      required
-    },
-    temp15PM: {
-      required
-    },
-    temp21PM: {
-      required
-    },
-    tempMax: {
-      required
-    },
-    tempMin: {
+    averageTemperature: {
       required
     },
     windSpeed: {
       required
     },
-    umiRelativa9AM: {
-      required
-    },
-    umiRelativa15PM: {
-      required
-    },
-    umiRelativa21PM: {
+    umiRelativaMedia: {
       required
     },
     latitudeGraus: {
@@ -239,23 +178,21 @@ export default {
 
   methods: {
     calculate() {
+      console.log('this.averageTemperature:', this.averageTemperature)
+      console.log('this.umiRelativaMedia:', this.umiRelativaMedia)
       let julianDayResult = julianDay(this.day, this.month, this.year)
       console.log('julianDayResult:', julianDayResult)
       let windSpeedResult = windSpeed(this.windSpeed)
       console.log('windSpeedResult:', windSpeedResult)
-      let averageTempResult = averageTemp(this.temp9AM, this.temp21PM, this.tempMax, this.tempMin)
-      console.log('averageTempResult:', averageTempResult)
-      let saturationPressureResult = saturationPressure(averageTempResult)
+      let saturationPressureResult = saturationPressure(this.averageTemperature)
       console.log('saturationPressureResult:', saturationPressureResult)
-      let saturationPressureCurveResult = saturationPressureCurve(saturationPressureResult, averageTempResult)
+      let saturationPressureCurveResult = saturationPressureCurve(saturationPressureResult, this.averageTemperature)
       console.log('saturationPressureCurveResult:', saturationPressureCurveResult)
       let psychrometricCoefficientResult = psychrometricCoefficient(this.atmosphericPressure)
       console.log('psychrometricCoefficientResult:', psychrometricCoefficientResult)
       let modifiedPsychrometricCoefficientResult = modifiedPsychrometricCoefficient(psychrometricCoefficientResult, windSpeedResult)
       console.log('modifiedPsychrometricCoefficientResult:', modifiedPsychrometricCoefficientResult)
-      let relativeHumidityResult = relativeHumidity(this.umiRelativa9AM, this.umiRelativa15PM, this.umiRelativa21PM)
-      console.log('relativeHumidityResult:', relativeHumidityResult)
-      let steamPressureResult = steamPressure(saturationPressureResult, relativeHumidityResult)
+      let steamPressureResult = steamPressure(saturationPressureResult, this.umiRelativaMedia)
       console.log('steamPressureResult:', steamPressureResult)
       let solarDeclinationResult = solarDeclination(julianDayResult)
       console.log('solarDeclinationResult:', solarDeclinationResult)
@@ -270,16 +207,15 @@ export default {
       let radiationAtmosphereResult = radiationAtmosphere(relativeEarthSunResult, latitudeResult, solarDeclinationResult, sunriseAngleResult)
       console.log('radiationAtmosphereResult:', radiationAtmosphereResult)
       let incidentSolarRadiationResult = incidentSolarRadiationPM(this.insolation, durationDayResult, radiationAtmosphereResult)
-      console.log('Oi cremosa! Eu sei que não o sou o melhor namorado do mundo... mas estou me esforçando muito para ser cada dia melhor! Saiba que vc é a minha fonte de inspiração!')
       console.log('incidentSolarRadiationResult:', incidentSolarRadiationResult)
       let shortwaveRadiationResult = shortwaveRadiation(incidentSolarRadiationResult)
       console.log('shortwaveRadiationResult:', shortwaveRadiationResult)
-      let longwaveRadiationResult = longwaveRadiation(this.insolation, durationDayResult, steamPressureResult, this.tempMax, this.tempMin)
+      let longwaveRadiationResult = longwaveRadiation(this.insolation, durationDayResult, steamPressureResult, this.averageTemperature)
       console.log('longwaveRadiationResult:', longwaveRadiationResult)
       let radiationBalanceResult = radiationBalance(shortwaveRadiationResult, longwaveRadiationResult)
       console.log('radiationBalanceResult:', radiationBalanceResult)
 
-      let etoResult = etoPenMon(saturationPressureCurveResult, psychrometricCoefficientResult, radiationBalanceResult, modifiedPsychrometricCoefficientResult, averageTempResult, windSpeedResult, saturationPressureResult, steamPressureResult)
+      let etoResult = etoPenMon(saturationPressureCurveResult, psychrometricCoefficientResult, radiationBalanceResult, modifiedPsychrometricCoefficientResult, this.averageTemperature, windSpeedResult, saturationPressureResult, steamPressureResult)
       console.log('eto:', etoResult)
       this.result = etoResult.toFixed(2)
       this.$store.dispatch('setEto', this.result)
@@ -291,5 +227,3 @@ export default {
 <style lang="scss" scoped>
 
 </style>
-
-

@@ -40,7 +40,7 @@
                 <div class="row efficiency-input" v-if="efficiency === 'yes'">
                   <div class="input-field">
                     <input id="system-efficiency" type="text" class="validate" v-model.number="systemEfficiency" @input="$v.systemEfficiency.$touch()">
-                    <label for="system-efficiency">Eficiência do sistema:</label>
+                    <label for="system-efficiency">Eficiência do sistema: (%)</label>
                     <span class="error-message" v-if="!$v.systemEfficiency.required">Entre com o valor da eficiência do seu sistema</span>
                   </div>
                 </div>
