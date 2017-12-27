@@ -34,7 +34,7 @@
             <div class="input-field col m4 s6">
               <input id="latitude-graus" type="text" class="validate" v-model="latitudeGraus" @input="$v.latitudeGraus.$touch()">
               <label for="latitude-graus">Latitude em graus:</label>
-              <span class="error-message" v-if="!$v.latitudeGraus.required">Entre com o valor da latitude em graus</span>
+              <span class="error-message" v-if="!$v.latitudeGraus.required">Entre com o valor da latitude em graus. ATENÇÃO: valor positivo!</span>
             </div>
             <div class="input-field col m4 s6">
               <input id="latitude-minutos" type="text" class="validate" v-model="latitudeMinutos" @input="$v.latitudeMinutos.$touch()">
