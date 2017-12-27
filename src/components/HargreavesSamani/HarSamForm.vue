@@ -66,12 +66,12 @@
             <div class="input-field col m4 s6">
               <input id="latitude-graus" type="text" class="validate" v-model.number="latitudeGraus" @input="$v.latitudeGraus.$touch()">
               <label for="latitude-graus">Latitude em graus:</label>
-              <span class="error-message" v-if="!$v.latitudeGraus.required">Entre com o valor da latitude em graus. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.latitudeGraus.required">Entre com o valor da latitude em graus. ATENÇÃO: Latitude negativa no Hemisfério Sul (-) e positiva no Hemisfério Norte (+).</span>
             </div>
             <div class="input-field col m4 s6">
               <input id="latitude-minutos" type="text" class="validate" v-model.number="latitudeMinutos" @input="$v.latitudeMinutos.$touch()">
               <label for="latitude-minutos">Latitude em minutos:</label>
-              <span class="error-message" v-if="!$v.latitudeMinutos.required">Entre com o valor da latitude em minutos. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.latitudeMinutos.required">Entre com o valor da latitude em minutos.</span>
             </div>
           </div>
           <div class="row" v-if="result">
