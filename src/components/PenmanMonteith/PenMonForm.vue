@@ -36,6 +36,20 @@
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
+              <input id="max-temperature" type="text" class="validate" v-model.number="maxTemp" @input="$v.maxTemp.$touch()">
+              <label for="max-temperature">Temperatura Máxima: (°C)</label>
+              <span class="error-message" v-if="!$v.maxTemp.required">Entre com o valor da temperatura máxima em °C. O separador decimal deve ser ponto e não vírgula!</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col m8 s12">
+              <input id="min-temperature" type="text" class="validate" v-model.number="minTemp" @input="$v.minTemp.$touch()">
+              <label for="min-temperature">Temperatura Mínima: (°C)</label>
+              <span class="error-message" v-if="!$v.minTemp.required">Entre com o valor da temperatura mínimo em °C. O separador decimal deve ser ponto e não vírgula!</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col m8 s12">
               <input id="average-temperature" type="text" class="validate" v-model.number="averageTemperature" @input="$v.averageTemperature.$touch()">
               <label for="average-temperature">Temperatura Média: (°C)</label>
               <span class="error-message" v-if="!$v.averageTemperature.required">Entre com o valor da temperatura média em °C. O separador decimal deve ser ponto e não vírgula!</span>
@@ -134,6 +148,8 @@ export default {
       month: '',
       year: '',
       averageTemperature: '',
+      maxTemp: '',
+      minTemp: '',
       windSpeed: '',
       atmosphericPressure: '',
       umiRelativaMedia: '',
@@ -172,6 +188,12 @@ export default {
       required
     },
     atmosphericPressure: {
+      required
+    },
+    maxTemp: {
+      required
+    },
+    minTemp: {
       required
     }
   },
