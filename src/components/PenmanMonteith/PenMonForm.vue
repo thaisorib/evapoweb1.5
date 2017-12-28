@@ -232,7 +232,7 @@ export default {
       console.log('incidentSolarRadiationResult:', incidentSolarRadiationResult)
       let shortwaveRadiationResult = shortwaveRadiation(incidentSolarRadiationResult)
       console.log('shortwaveRadiationResult:', shortwaveRadiationResult)
-      let longwaveRadiationResult = longwaveRadiation(this.insolation, durationDayResult, steamPressureResult, this.averageTemperature)
+      let longwaveRadiationResult = longwaveRadiation(this.insolation, durationDayResult, steamPressureResult, this.averageTemperature, this.maxTemp, this.minTemp)
       console.log('longwaveRadiationResult:', longwaveRadiationResult)
       let radiationBalanceResult = radiationBalance(shortwaveRadiationResult, longwaveRadiationResult)
       console.log('radiationBalanceResult:', radiationBalanceResult)
