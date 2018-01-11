@@ -57,14 +57,13 @@
                     <tbody>
                       <tr>
                         <td>
-                          <input type="radio" id="value1" v-model="systemEfficiency" :value="60"/>
+                          <input type="radio" id="value1" v-model="systemEfficiency" :value="60.01"/>
                           <label for="value1"></label>
                         </td>
                         <td>Superfície</td>
                         <td>Inundação</td>
                         <td>60</td>
                       </tr>
-                      {{systemEfficiency}}
                       <tr>
                         <td>
                           <input type="radio" id="value2" v-model="systemEfficiency" :value="65"/>
@@ -85,7 +84,7 @@
                       </tr>
                       <tr>
                         <td>
-                          <input type="radio" id="value4" v-model="systemEfficiency" :value="95"/>
+                          <input type="radio" id="value4" v-model="systemEfficiency" :value="95.01"/>
                           <label for="value4"></label>
                         </td>
                         <td>Subterrâneo</td>
@@ -94,7 +93,7 @@
                       </tr>
                       <tr>
                         <td>
-                          <input type="radio" id="value5" v-model="systemEfficiency" :value="60"/>
+                          <input type="radio" id="value5" v-model="systemEfficiency" :value="60.02"/>
                           <label for="value5"></label>
                         </td>
                         <td>Subterrâneo</td>
@@ -103,7 +102,7 @@
                       </tr>
                       <tr>
                         <td>
-                          <input type="radio" id="value6" v-model="systemEfficiency" :value="80"/>
+                          <input type="radio" id="value6" v-model="systemEfficiency" :value="80.01"/>
                           <label for="value6"></label>
                         </td>
                         <td>Subterrâneo</td>
@@ -112,7 +111,7 @@
                       </tr>
                       <tr>
                         <td>
-                          <input type="radio" id="value7" v-model="systemEfficiency" :value="85"/>
+                          <input type="radio" id="value7" v-model="systemEfficiency" :value="85.01"/>
                           <label for="value7"></label>
                         </td>
                         <td>Subterrâneo</td>
@@ -139,7 +138,7 @@
                       </tr>
                       <tr>
                         <td>
-                          <input type="radio" id="value10" v-model="systemEfficiency" :value="90"/>
+                          <input type="radio" id="value10" v-model="systemEfficiency" :value="90.01"/>
                           <label for="value10"></label>
                         </td>
                         <td>Aspersão</td>
@@ -247,6 +246,7 @@ export default {
       this.$store.dispatch('setDwi', this.dwi)
       this.$store.dispatch('setKc', this.kc)
       this.$store.dispatch('setSystemIrrigationEfficiency', this.systemEfficiency)
+
       this.$router.push({ path: `/lamina/${this.selectedMethod}` })
     }
   }

@@ -21,8 +21,12 @@ export const mutations = {
     state.systemIrrigationEfficiency = system_irrigation_efficiency_value
   },
 
-  [types.SET_DAILY_PRECIPITATION](state, daily_precipitation_value) {
-    state.dailyPrecipitation.push(daily_precipitation_value)
+  [types.SET_DAILY_PRECIPITATION] (state, daily_precipitation_value, eto_value) {
+    if(daily_precipitation_value < (0.2 * eto_value)) {
+      state.dailyPrecipitation.push(0)
+    } else {
+      state.dailyPrecipitation.push(daily_precipitation_value)
+    }
   },
 
   [types.RESET_ETO] (state) {

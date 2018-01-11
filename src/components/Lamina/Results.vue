@@ -4,7 +4,8 @@
       <div class="card white darken-1">
         <div class="card-content">
           <span class="card-title">Resultado Final:</span>
-          <p>{{ laminaBruta }}</p>
+            <h1 v-if="typeof laminaBruta === 'number'">{{ laminaBruta }}</h1>
+            <p else>{{ laminaBruta }}</p>
         </div>
       </div>
     </div>

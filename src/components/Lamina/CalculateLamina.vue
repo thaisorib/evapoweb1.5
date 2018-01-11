@@ -19,7 +19,7 @@
         <button class="waves-effect waves-light btn" @click="calculate()">Resultado</button>
       </div>
     </div>
-    <Results :laminaBruta="lbisResult"/>
+    <Results :laminaBruta="lbisResult" v-if="lbisResult"/>
   </div>
 </template>
 
@@ -88,15 +88,16 @@ export default {
     lbis() {
       const systemEfficiency = this.$store.state.systemIrrigationEfficiency
 
-      this.lbisResult = this.etcResult.reduce((laminaBruta, val, index) => {
+      let lbis = this.etcResult.reduce((laminaBruta, val, index) => {
         return laminaBruta + (val - this.effectivePrecipitationResult[index])
       }, 0)
 
+      this.lbisResult = Number(lbis.toFixed(2))
       console.log(this.lbisResult)
       console.log(this.lbisResult/systemEfficiency)
 
       if((this.lbisResult / systemEfficiency) < 0) {
-        this.lbisResult = "Olá! Você não necessita irrigar, pois durante esses dias a chuva foi suficiente para atender a necessidade hídrica da sua cultura"
+        this.lbisResult = "Olá! Você não necessita irrigar, pois durante esses dias a chuva foi suficiente para atender a necessidade hídrica da sua cultura!"
       }
     }
   },

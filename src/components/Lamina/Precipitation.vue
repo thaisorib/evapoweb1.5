@@ -4,25 +4,14 @@
       <div class="card white darken-1">
         <div class="card-content precipitation-card">
           <span class="card-title">Dados sobre Precipitação</span>
-          <div class="row">
-            <div class="col s6">
-              <p>Houve precipitação neste dia?</p>
-              <select class="browser-default" v-model="precipitation">
-                <option value="no" selected>Não</option>
-                <option value="yes">Sim</option>
-              </select>
-            </div>
-            <div class="col s6" v-if="precipitation === 'yes'">
-              <div class="input-field">
-                <input id="dailyPrecipitation" type="text" class="validate" v-model.number="dailyPrecipitation">
-                <label for="dailyPrecipitation" @blur="setPrecipitation" @keypress.enter="setPrecipitation">Precipitação: (mm)</label>
-                <button
-                  class="waves-effect waves-light btn"
-                  :class="{ disabled: isDisabled }"
-                  @click="setPrecipitation">Calcular</button>
-              </div>
+            <div class="input-field">
+              <input id="dailyPrecipitation" type="text" class="validate" v-model.number="dailyPrecipitation">
+              <label for="dailyPrecipitation">Precipitação: (mm)</label>
+              <span class="error-message" v-if="$v.dailyPrecipitation.$invalid">Caso não houve precipitação neste dia, adicione 0 ao campo</span>
             </div>
           </div>
+          <div class="card-action">
+          <button class="waves-effect waves-light btn" :class="{ disabled: isDisabled }" @click="setPrecipitation">Calcular</button>
         </div>
       </div>
     </div>
@@ -30,12 +19,19 @@
 </template>
 
 <script>
+import { required, numeric } from 'vuelidate/lib/validators'
+
 export default {
   name: 'precipitation',
   data() {
     return {
       precipitation: '',
       dailyPrecipitation: ''
+    }
+  },
+  validations: {
+    dailyPrecipitation: {
+      required
     }
   },
   computed: {
@@ -45,7 +41,11 @@ export default {
   },
   methods: {
     setPrecipitation() {
-      this.$store.dispatch('setDailyPrecipitation', this.dailyPrecipitation)
+      if(this.precipitation === 'no') {
+        this.dailyPrecipitation = 0
+      }
+      console.log(this.dailyPrecipitation)
+      this.$store.dispatch('setDailyPrecipitation', this.dailyPrecipitation, this.$store.state.eto)
     }
   }
 }

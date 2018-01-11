@@ -21,8 +21,8 @@ export const setSystemIrrigationEfficiency = ({ commit }, system_irrigation_effi
   commit(types.SET_SYSTEM_IRRIGATION_EFFICIENCY, system_irrigation_efficiency_value)
 }
 
-export const setDailyPrecipitation = ({ commit }, daily_precipitation_value) => {
-  commit(types.SET_DAILY_PRECIPITATION, daily_precipitation_value)
+export const setDailyPrecipitation = ({ commit }, daily_precipitation_value, eto_value) => {
+  commit(types.SET_DAILY_PRECIPITATION, daily_precipitation_value, eto_value)
 }
 
 // Reset Actions
