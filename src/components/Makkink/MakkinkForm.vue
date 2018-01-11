@@ -109,7 +109,7 @@
           </div>
         </div>
         <div class="card-action">
-          <button class="waves-effect waves-light btn" @click.prevent="calculate">Calcular</button>
+          <button class="waves-effect waves-light btn" :class="{ disabled: isDisabled }" @click.prevent="calculate">Calcular</button>
         </div>
       </div>
     </div>
@@ -205,6 +205,12 @@ export default {
     },
     atmosphericPressure: {
       required
+    }
+  },
+
+  computed: {
+    isDisabled() {
+      return this.latitudeMinutos === ''
     }
   },
 
