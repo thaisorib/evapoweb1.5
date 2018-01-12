@@ -7,7 +7,7 @@
             <div class="input-field">
               <input id="dailyPrecipitation" type="text" class="validate" v-model.number="dailyPrecipitation">
               <label for="dailyPrecipitation">Precipitação: (mm)</label>
-              <span class="error-message" v-if="$v.dailyPrecipitation.$invalid">Caso não houve precipitação neste dia, adicione 0 ao campo</span>
+              <span class="error-message" v-if="$v.dailyPrecipitation.$invalid">Caso não houve precipitação neste dia, digite 0 no campo. (OBSERVAÇÃO.: O separador decimal é ponto(.) e não v;irgula (,)!</span>
             </div>
           </div>
           <div class="card-action">
