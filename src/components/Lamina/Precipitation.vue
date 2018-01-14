@@ -44,7 +44,6 @@ export default {
       if(this.precipitation === 'no') {
         this.dailyPrecipitation = 0
       }
-      console.log(this.dailyPrecipitation)
       this.$store.dispatch('setDailyPrecipitation', this.dailyPrecipitation, this.$store.state.eto)
     }
   }

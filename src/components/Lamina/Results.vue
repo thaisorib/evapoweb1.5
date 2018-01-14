@@ -4,8 +4,9 @@
       <div class="card white darken-1">
         <div class="card-content">
           <span class="card-title">Resultado Final:</span>
-            <h1 v-if="typeof laminaBruta === 'number'">{{ laminaBruta }}</h1>
-            <p else>{{ laminaBruta }}</p>
+          {{laminaBruta}}
+            <h5 v-if="laminaBruta > 0">Olá! Você precisa irrigar {{ laminaBruta }} milímetros hoje!</h5>
+            <h5 v-else>Olá! Você não necessita irrigar, pois durante esses dias a chuva foi suficiente para atender a necessidade hídrica da sua cultura!</h5>
         </div>
       </div>
     </div>

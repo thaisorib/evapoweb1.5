@@ -19,7 +19,7 @@
         <button class="waves-effect waves-light btn" @click="calculate()">Resultado</button>
       </div>
     </div>
-    <Results :laminaBruta="lbisResult" v-if="lbisResult"/>
+    <Results :laminaBruta="lbisResultNumber" v-if="lbisResultNumber"/>
   </div>
 </template>
 
@@ -56,6 +56,8 @@ export default {
       kc: '',
       etcResult: [],
       lbisResult: '',
+      llisResult: '',
+      lbisResultNumber: '',
       effectivePrecipitationResult: []
     }
   },
@@ -64,14 +66,17 @@ export default {
     calculate() {
       this.effectivePrecipitation()
       this.etc()
-      this.lbis()
+      this.llis()
     },
 
     effectivePrecipitation() {
-      const eto = this.$store.state.eto
-      const dailyPrecipitation = this.$store.state.dailyPrecipitation
+      let eto = this.$store.state.eto
+      let dailyPrecipitation = this.$store.state.dailyPrecipitation
 
       this.effectivePrecipitationResult = eto.map((elem, index) => {
+        if(dailyPrecipitation[index] < (0.2 * eto[index]) || dailyPrecipitation[index] === 0) {
+          return 0
+        }
         return (dailyPrecipitation[index] - (0.2) * elem)
       })
     },
@@ -85,20 +90,16 @@ export default {
       })
     },
 
-    lbis() {
-      const systemEfficiency = this.$store.state.systemIrrigationEfficiency
+    llis() {
+      let systemEfficiency = this.$store.state.systemIrrigationEfficiency
 
-      let lbis = this.etcResult.reduce((laminaBruta, val, index) => {
+      let llis = this.etcResult.reduce((laminaBruta, val, index) => {
         return laminaBruta + (val - this.effectivePrecipitationResult[index])
       }, 0)
 
-      this.lbisResult = Number(lbis.toFixed(2))
-      console.log(this.lbisResult)
-      console.log(this.lbisResult/systemEfficiency)
-
-      if((this.lbisResult / systemEfficiency) < 0) {
-        this.lbisResult = "Olá! Você não necessita irrigar, pois durante esses dias a chuva foi suficiente para atender a necessidade hídrica da sua cultura!"
-      }
+      this.llisResult = Number(llis.toFixed(2))
+      this.lbisResultNumber = this.llisResult / (systemEfficiency / 100)
+      this.lbisResultNumber.toFixed(2)
     }
   },
 
