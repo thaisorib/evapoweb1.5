@@ -60,7 +60,7 @@ export default {
     return {
       result: 0,
       etoArray: [],
-      methodDescription: 'Esse método consiste em medir diariamente a evapotranspiração de um tanque metálico para estimar a ETo.',
+      methodDescription: 'Esse método consiste em medir diariamente a evaporação de um tanque metálico para estimar a ETo. Para conversão da evaporação do Tanque Classe A (ECA) em ETo, utiliza-se o coeficiente (Kp), o qual é função da bordadura ao redor do tanque, velocidade do vento a 2 metros e umidade relativa do ar.',
       methodTitle: 'Método Tanque Classe A',
       fetch: '',
       dailyHumidity: '',
