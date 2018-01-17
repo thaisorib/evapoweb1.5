@@ -5,7 +5,7 @@
       <div class="col s12 m8 offset-m2">
         <div class="card white darken-1">
           <div class="card-content">
-            <span class="card-title">Lâmina Bruta sugerida para Irrigação</span>
+            <span class="card-title">Lâmina Bruta Sugerida de Irrigação (LBIS)</span>
             <br>
             <div class="row">
               <label>Métodos</label>
@@ -21,13 +21,13 @@
                 <option value=""disabled selected>Quantos dias se passaram desde a última irrigacão?</option>
                 <option :value="day" v-for="day in 15" :key="day">{{ day }}</option>
               </select>
-              <span class="error-message" v-if="$v.dwi.$invalid">Entre com o valor dos dias decorridos da última irrigação</span>
+              <span class="error-message" v-if="$v.dwi.$invalid">Entre com a quantidade de dias decorridos da última irrigação</span>
             </div>
             <div class="row">
               <div class="input-field col m12 s12">
                 <input id="kc" type="text" class="validate" v-model.number="kc" @input="$v.kc.$touch()">
-                <label for="kc">kc referente ao estágio de desenvolvimento da cultura:</label>
-                <span class="error-message" v-if="!$v.kc.required">Entre com o valor do KC referente ao estágio de desenvolvimento da cultura</span>
+                <label for="kc">Kc referente ao estágio de desenvolvimento da cultura:</label>
+                <span class="error-message" v-if="!$v.kc.required">Entre com o valor do Kc referente ao estágio de desenvolvimento da cultura</span>
               </div>
             </div>
             <div class="row">
@@ -41,7 +41,7 @@
                   <div class="input-field">
                     <input id="system-efficiency" type="text" class="validate" v-model.number="systemEfficiency" @input="$v.systemEfficiency.$touch()">
                     <label for="system-efficiency">Eficiência do sistema: (%)</label>
-                    <span class="error-message" v-if="!$v.systemEfficiency.required">Entre com o valor da eficiência do seu sistema</span>
+                    <span class="error-message" v-if="!$v.systemEfficiency.required">Entre com o valor da eficiência (Ea) do seu sistema de irrigação</span>
                   </div>
                 </div>
                 <div class="row efficiency-table" v-else>
@@ -50,7 +50,7 @@
                       <tr>
                         <th>Opção</th>
                         <th>Sistema de Irrigação</th>
-                        <th>Eficiência do referência (%)</th>
+                        <th>Eficiência de referência (Ea) - (%)</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -179,7 +179,7 @@ export default {
       methods: [
         {
           route: 'penman-monteith',
-          name: 'Penman-Monteith(FAO-56)'
+          name: 'Penman-Monteith (FAO)'
         },
         {
           route: 'linacre',
