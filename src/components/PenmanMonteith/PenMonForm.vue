@@ -15,7 +15,7 @@
                 <option disabled selected>Escolha um dia</option>
                 <option :value="day" v-for="day in DAYS" :key="day">{{ day }}</option>
               </select>
-              <span class="error-message" v-if="$v.day.$invalid">Entre com o valor dia desejado</span>
+              <span class="error-message" v-if="$v.day.$invalid">Entre com o dia desejado</span>
             </div>
             <div class="col m4">
               <label>Mês:</label>
@@ -23,7 +23,7 @@
                 <option disabled selected>Escolha um mês</option>
                 <option :value="month.index" v-for="month in MONTHS" :key="month.index">{{ month.month }}</option>
               </select>
-              <span class="error-message" v-if="$v.month.$invalid">Entre com o valor do mês desejado</span>
+              <span class="error-message" v-if="$v.month.$invalid">Entre com o mês desejado</span>
             </div>
             <div class="col m4">
               <label>Ano:</label>
@@ -31,34 +31,34 @@
                 <option disabled selected>Escolha um ano</option>
                 <option :value="year" v-for="year in YEARS" :key="year">{{ year }}</option>
               </select>
-              <span class="error-message" v-if="$v.year.$invalid">Entre com o valor do ano desejado</span>
+              <span class="error-message" v-if="$v.year.$invalid">Entre com o ano desejado</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="max-temperature" type="text" class="validate" v-model.number="maxTemp" @input="$v.maxTemp.$touch()">
               <label for="max-temperature">Temperatura Máxima: (°C)</label>
-              <span class="error-message" v-if="!$v.maxTemp.required">Entre com o valor da temperatura máxima em °C. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.maxTemp.required">Entre com a temperatura máxima do ar (°C). O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="min-temperature" type="text" class="validate" v-model.number="minTemp" @input="$v.minTemp.$touch()">
               <label for="min-temperature">Temperatura Mínima: (°C)</label>
-              <span class="error-message" v-if="!$v.minTemp.required">Entre com o valor da temperatura mínimo em °C. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.minTemp.required">Entre com a temperatura mínima do ar (°C). O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="average-temperature" type="text" class="validate" v-model.number="averageTemperature" @input="$v.averageTemperature.$touch()">
               <label for="average-temperature">Temperatura Média: (°C)</label>
-              <span class="error-message" v-if="!$v.averageTemperature.required">Entre com o valor da temperatura média em °C. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.averageTemperature.required">Entre com a temperatura média do ar (°C). O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="atmosphericPressure" type="text" class="validate" v-model.number="atmosphericPressure" @input="$v.atmosphericPressure.$touch()">
-              <label for="atmosphericPressure">Pressão atmosférica: (kPa)</label>
+              <label for="atmosphericPressure">Pressão atmosférica média: (kPa)</label>
               <p class="error-message" v-if="!$v.atmosphericPressure.required">Este campo é obrigatório. O separador decimal deve ser ponto e não vírgula!</p>
             </div>
           </div>
@@ -73,7 +73,7 @@
             <div class="input-field col m8 s12">
               <input id="umidade-relativa-media" type="text" class="validate" v-model.number="umiRelativaMedia" @input="$v.umiRelativaMedia.$touch()">
               <label for="umidade-relativa-media">Umidade Relativa Média:</label>
-              <span class="error-message" v-if="!$v.umiRelativaMedia.required">Entre com o valor da Umidade Relativa média. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.umiRelativaMedia.required">Entre com o valor da Umidade Relativa média do ar. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
@@ -87,12 +87,12 @@
             <div class="input-field col m4 s6">
               <input id="latitude-graus" type="text" class="validate" v-model.number="latitudeGraus" @input="$v.latitudeGraus.$touch()">
               <label for="latitude-graus">Latitude em graus:</label>
-              <span class="error-message" v-if="!$v.latitudeGraus.required">Entre com o valor da latitude em graus. ATENÇÃO: Latitude negativa no Hemisfério Sul (-) e positiva no Hemisfério Norte (+).</span>
+              <span class="error-message" v-if="!$v.latitudeGraus.required">Entre com o valor da latitude (graus). ATENÇÃO: Latitude negativa no Hemisfério Sul (-) e positiva no Hemisfério Norte (+).</span>
             </div>
             <div class="input-field col m4 s6">
               <input id="latitude-minutos" type="text" class="validate" v-model.number="latitudeMinutos" @input="$v.latitudeMinutos.$touch()">
               <label for="latitude-minutos">Latitude em minutos:</label>
-              <span class="error-message" v-if="!$v.latitudeMinutos.required">Entre com o valor da latitude em minutos</span>
+              <span class="error-message" v-if="!$v.latitudeMinutos.required">Entre com o valor da latitude (minutos)</span>
             </div>
           </div>
           <div class="row" v-if="result">
@@ -143,7 +143,7 @@ export default {
       result: 0,
       methodTitle: "Método Penman-Monteith (FAO-56)",
       methodDescription:
-        "O método de Penman-Monteith foi recomendado pela FAO como o mais adequado para estimar a evapotranspiração de referência (ETo) de uma cultura em escala diária.",
+        "Atualmente o método considerado padrão para se estimar a ETo é o de Penman-Monteith parametrizado pela FAO.",
       day: '',
       month: '',
       year: '',
