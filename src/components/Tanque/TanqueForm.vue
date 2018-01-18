@@ -18,14 +18,14 @@
           <div class="row">
             <div class="input-field col m12 s12">
               <input id="daily-humidity" type="text" class="validate" v-model.number="dailyHumidity" @input="$v.dailyHumidity.$touch()">
-              <label for="daily-humidity">Umidade Relativa média diária: (%)</label>
+              <label for="daily-humidity">Umidade Relativa média do ar: (%)</label>
               <span class="error-message" v-if="!$v.dailyHumidity.required">Este campo é obrigatório. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m12 s12">
               <input id="wind-speed" type="text" class="validate" v-model.number="windSpeed" @input="$v.windSpeed.$touch()">
-              <label for="wind-speed">Velocidade do vento a 2 metros: (m/2)</label>
+              <label for="wind-speed">Velocidade do vento a 2 metros: (m/s)</label>
               <span class="error-message" v-if="!$v.windSpeed.required">Este campo é obrigatório. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
