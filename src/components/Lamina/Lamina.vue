@@ -5,7 +5,7 @@
       <div class="col s12 m8 offset-m2">
         <div class="card white darken-1">
           <div class="card-content">
-            <span class="card-title">Lâmina Bruta Sugerida de Irrigação (LBIS)</span>
+            <span class="card-title">Lâmina Bruta de Irrigação Sugerida (LBIS)</span>
             <br>
             <div class="row">
               <label>Métodos</label>
