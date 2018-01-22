@@ -15,7 +15,7 @@
                 <option disabled selected>Escolha um dia</option>
                 <option :value="day" v-for="day in DAYS" :key="day">{{ day }}</option>
               </select>
-              <span class="error-message" v-if="$v.day.$invalid">Entre com o valor dia desejado</span>
+              <span class="error-message" v-if="$v.day.$invalid">Entre com o dia desejado</span>
             </div>
             <div class="col m4">
               <label>Mês:</label>
@@ -23,7 +23,7 @@
                 <option disabled selected>Escolha um mês</option>
                 <option :value="month.index" v-for="month in MONTHS" :key="month.index">{{ month.month }}</option>
               </select>
-              <span class="error-message" v-if="$v.month.$invalid">Entre com o valor do mês desejado</span>
+              <span class="error-message" v-if="$v.month.$invalid">Entre com o mês desejado</span>
             </div>
             <div class="col m4">
               <label>Ano:</label>
@@ -31,49 +31,49 @@
                 <option disabled selected>Escolha um ano</option>
                 <option :value="year" v-for="year in YEARS" :key="year">{{ year }}</option>
               </select>
-              <span class="error-message" v-if="$v.year.$invalid">Entre com o valor do ano desejado</span>
+              <span class="error-message" v-if="$v.year.$invalid">Entre com o ano desejado</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="temperature9AM" type="text" class="validate" v-model.number="temp9AM" @input="$v.temp9AM.$touch()">
               <label for="temperature9AM">Temperatura: (9 horas)</label>
-              <span class="error-message" v-if="!$v.temp9AM.required">Entre com o valor da temperatura às 9 horas. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.temp9AM.required">Entre com a temperatura do ar às 9 horas. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="temperature15PM" type="text" class="validate" v-model.number="temp15PM" @input="$v.temp15PM.$touch()">
               <label for="temperature15PM">Temperatura: (15 horas)</label>
-              <span class="error-message" v-if="!$v.temp15PM.required">Entre com o valor da temperatura às 15 horas. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.temp15PM.required">Entre com a temperatura do ar às 15 horas. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="temperature121PM" type="text" class="validate" v-model.number="temp21PM" @input="$v.temp21PM.$touch()">
               <label for="temperature15PM">Temperatura: (21 horas)</label>
-              <span class="error-message" v-if="!$v.temp21PM.required">Entre com o valor da temperatura às 21 horas. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.temp21PM.required">Entre com a temperatura valor do ar às 21 horas. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="wetBulb9AM" type="text" class="validate" v-model.number="wetBulb9AM" @input="$v.wetBulb9AM.$touch()">
               <label for="wetBulb9AM">Temperatura do bulbo: (9 horas)</label>
-              <span class="error-message" v-if="!$v.wetBulb9AM.required">Entre com o valor da temperatura às 9 horas. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.wetBulb9AM.required">Entre com a temperatura às 9 horas. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="wetBulb15PM" type="text" class="validate" v-model.number="wetBulb15PM" @input="$v.wetBulb15PM.$touch()">
               <label for="wetBulb15PM">Temperatura do bulbo: (15 horas)</label>
-              <span class="error-message" v-if="!$v.wetBulb15PM.required">Entre com o valor da temperatura às 15 horas. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.wetBulb15PM.required">Entre com a temperatura às 15 horas. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col m8 s12">
               <input id="wetBulb21PM" type="text" class="validate" v-model.number="wetBulb21PM" @input="$v.wetBulb15PM.$touch()">
               <label for="wetBulb15PM">Temperatura do bulbo: (21 horas)</label>
-              <span class="error-message" v-if="!$v.wetBulb15PM.required">Entre com o valor da temperatura às 21 horas. O separador decimal deve ser ponto e não vírgula!</span>
+              <span class="error-message" v-if="!$v.wetBulb15PM.required">Entre com a temperatura às 21 horas. O separador decimal deve ser ponto e não vírgula!</span>
             </div>
           </div>
           <div class="row">
